@@ -29,4 +29,16 @@ class ModelProduit{
             $this->$nom_attribut = $valeur;
         return false;
     }
+
+    public static function getAllProduits() {
+        $sql = "SELECT* FROM proj_php_Produits;";
+        $rep = Model::$pdo->prepare($sql);
+        $rep->execute();
+        $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit');
+        $tab_voit = $rep->fetchAll();
+
+        if (empty($tab_prod))
+            return false;
+        return $tab_prod;
+    }
 }

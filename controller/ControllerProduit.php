@@ -1,13 +1,14 @@
 <?php
-require_once File::build_path(array('model', 'ModelVoiture.php'));// chargement du modèle
-class ControllerVoiture {
+require_once File::build_path(array('model', 'ModelProduit.php'));// chargement du modèle
+
+class ControllerProduit {
     public static function readAll() {
-        $tab_v = ModelVoiture::getAllVoitures();     //appel au modèle pour gerer la BD
+        $tab_p = ModelProduit::getAllProduits();     //appel au modèle pour gerer la BD
         require File::build_path(array('view', 'voiture','list.php')); //"redirige" vers la vue
     }
     public static function read(){
-        $v = ModelVoiture::getVoitureByImmat($_GET['immat']);
-        if($v==null)
+        $p = ModelVoiture::getVoitureByImmat($_GET['immat']);
+        if($p==null)
             require File::build_path(array('view', 'voiture','error.php'));
         else
             require File::build_path(array('view', 'voiture','detail.php'));
@@ -17,10 +18,10 @@ class ControllerVoiture {
 
     }
     public static function created(){
-        $voiture1 = new ModelVoiture($_POST['immatriculation'], $_POST['couleur'],
+        $produit1 = new ModelVoiture($_POST['immatriculation'], $_POST['couleur'],
             $_POST['marque']);
 
-        $voiture1->save();
+        $produit1->save();
 
         self::readAll();
 
