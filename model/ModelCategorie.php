@@ -1,20 +1,14 @@
 <?php
 require_once File::build_path(array('model','Model.php'));
 
-class ModelProduit{
-    private $idProduit;
-    private $nomProduit;
-    private $description;
-    private $couleur;
-    private $prix;
+class ModelCategorie{
+    private $idCategorie;
+    private $nomCategorie;
 
     public function __construct($data = array()){
         if (!empty($data)) {
-            $this->idProduit = $data["idProduit"];
-            $this->nomProduit = $data["nomProduit"];
-            $this->description = $data["description"];
-            $this->couleur = $data["couleur"];
-            $this->prix = $data["prix"];
+            $this->idProduit = $data["idCategorie"];
+            $this->nomProduit = $data["nomCategorie"];
         }
     }
 
