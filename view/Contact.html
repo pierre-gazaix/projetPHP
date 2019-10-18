@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="Style.css" />
+        <title>Devialet | Contact</title>
+        <link rel="icon" type="image/png" href="./Images/JPEG/LogoOnglet.png" sizes="16x16">
+
+    </head>
+
+    <body>
+
+        <header>
+            
+            <a href="./Accueil.html"><img src="./Images/JPEG/LogoN.png" alt="LogoDevialet"></a>
+
+            <div id="MenuBurger">
+
+                <img src="./Images/JPEG/LogoN2.png" alt="LogoDevialet">
+
+                <input id="Nav_Check" type="checkbox" />
+
+                <ul id="MenuB">
+                    <li><a href="./Accueil.html">ACCUEIL</a></li>
+                    <li><a href="./Produit.html">PRODUIT</a></li>
+                    <li><a href="./Presse.html">PRESSE</a></li>
+                    <li><a href="./Equipe.html">EQUIPE</a></li>
+                    <li><a href="./Contact.html">CONTACT</a></li>
+                    <li><a href="./Rejoindre.html">NOUS REJOINDRE</a></li>
+                    <li><a href="./FAQ.html">FAQ</a></li>
+                </ul>
+            </div>
+
+            <nav>
+                <ul>
+                    <li id="Produit"><a href="./Produit.html">PRODUIT</a></li>
+                    <li id="Presse"><a href="./Presse.html">PRESSE</a></li>
+                    <li id="Equipe"><a href="./Equipe.html">EQUIPE</a></li>
+                    <li id="Contact"><a href="./Contact.html">CONTACT</a></li>
+                    <li id="Rejoindre"><a href="./Rejoindre.html">NOUS REJOINDRE</a>
+                        <div class="submenu">
+                            <div id="metier_1"><a href="./metier_1.html">● Métier 1 ●</a></div>
+                            <div id="metier_2"><a href="./metier_2.html">● Métier 2 ●</a></div>
+                            <div id="metier_3"><a href="./metier_3.html">● Métier 3 ●</a></div>
+                            <div id="metier_4"><a href="./metier_4.html">● Métier 4 ●</a></div>
+                        </div>
+                    </li>
+                    <li id="FAQ"><a href="./FAQ.html">FAQ</a></li>
+                </ul>
+            </nav>
+
+        </header>
+
+        <div class="Holygrail-body">
+
+         <aside class="Holygrail-asideleft">
+                            
+        </aside>
+
+        <main class="Holygrail-main">
+
+            <form>
+                <fieldset>
+                    <legend>NOUS CONTACTER</legend>
+                    <p>
+                        <label for="nom">Nom* :</label>
+                        <input type="text" name="Nom" id="Nom" size="20" required />
+                    </p>
+                     <p>
+                        <label for="prenom">Prénom* :</label>
+                        <input type="text" name="prenom" id="prenom" size="20" required />
+                    </p>
+                    <p class="bouton">
+                        <label for="sexe" class="lbouton">Sexe* :</label>
+                        <input type="radio" name="sexe" value="homme" id="homme" required>
+                        <label for="homme">Homme</label>
+                        <input type="radio" name="sexe" value="femme" id="femme" required>
+                        <label for="femme">Femme</label>
+                    </p>
+                    <p>
+                        <label for="email">Adresse Email* :</label>
+                        <input type="email" name="email" id="email" size="30" placeholder="yourmail@domaine.com" required>
+                    </p>
+                    <p>
+                        <label for="codepostal">Code Postal* :</label>
+                        <input type="text" name="codepostal" id="codepostal" size="20" placeholder="Ex : 34000" required>
+                    </p>
+                    <p>
+                        <label for="tel">Numéro de téléphone :</label>
+                        <input type="tel" name="tel" id="tel" placeholder="Ex : +330123456789">
+                    </p>
+                    <p>
+                        <label for="pays">Dans quel pays habitez-vous ?*</label>
+                        <select name="pays" id="pays" required>
+                            <option value="france">France</option>
+                            <option value="espagne">Espagne</option>
+                            <option value="italie">Italie</option>
+                            <option value="royaume-uni">Royaume-Uni</option>
+                            <option value="canada">Canada</option>
+                            <option value="etats-unis">États-Unis</option>
+                            <option value="chine">Chine</option>
+                            <option value="japon">Japon</option>
+                        </select>
+                    </p>
+                    <p class="bouton">
+                        <label for="connu" class="lbouton">Vous avez entendu parler de nous via ?</label>
+                        <input type="checkbox" name="reseaux"><label for="reseaux">Réseaux Sociaux</label>
+                        <input type="checkbox" name="boucheoreille"><label for="boucheoreille">Bouche à oreille</label>
+                        <input type="checkbox" name="autre"><label for="autre">Autre</label>
+                    </p>
+                    <p>
+                        <label for="date">Date à laquelle vous souhaitez être contacté*</label>
+                        <input type="date" name="date" id="date" required>
+                    </p>
+                    <p class="mess">
+                        <label for="message">Message* :</label>
+                        <textarea id="message" name="message" placeholder="Entrez votre message." required></textarea>
+                    </p>
+                    <input id="boutonEnvoyer" type="submit" value="Envoyer">
+                </fieldset>
+            </form>
+
+        </main>
+
+        <aside class="Holygrail-asideright">
+                
+        </aside>
+
+        </div>
+
+        <footer>
+            <p>Contactez nous via le <strong><a href="./Contact.html">formulaire</a></strong>, par <strong>téléphone au 0123456789</strong> ou retrouvez nous directement en <strong><a href="./Boutique.html">boutique</a></strong>.</p>
+            <hr>
+            <div>
+                <ul class="Réseau">
+                    <li>Rejoignez nous</li>
+                    <li><a href="https://www.facebook.com/DevialetGlobal/"> <img src="Images/JPEG/facebook.png" alt="facebook entreprise" /> </a></li>
+                    <li><a href="https://twitter.com/devialet"> <img src="Images/JPEG/twitter.png" alt="twitter entreprise" /> </a></li>
+                    <li><a href="https://www.linkedin.com/uas/login"> <img src="Images/JPEG/linkedin.png" alt="linkedin entreprise" /> </a></li>
+                </ul>
+                <div id="newletters">
+                    <form>
+                        <p>Newsletters</p>
+                        <ul id="casenews">
+                            <li><input type="email" name="email" placeholder="mail@domaine.com" id="mail"></li>
+                            <li><input type="submit" id="submit" value="➤"></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+
+            <p id="copyright"> © 2019 Devialet All right reserved - Legal notices  </p>
+            
+        </footer>
+
+    </body>
+
+</html>
