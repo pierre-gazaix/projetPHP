@@ -1,7 +1,12 @@
 <?php
 require_once File::build_path(array('model','Model.php'));
 
-class ModelCategorie{
+class ModelCategorie extends Model {
+
+    protected static $nomTable = 'rGztzErq-Categories';
+    protected static $nomClasse = 'ModelCategorie';
+    protected static $primary= 'idCategorie';
+
     private $idCategorie;
     private $nomCategorie;
 
@@ -22,5 +27,24 @@ class ModelCategorie{
         if (property_exists($this, $nom_attribut))
             $this->$nom_attribut = $valeur;
         return false;
+    }
+
+    public static function selectAll(){
+        return parent::selectAll();
+    }
+    public static function select($primary_value){
+        return parent::select($primary_value);
+    }
+
+    public static function insert($data){
+        return parent::insert($data);
+    }
+
+    public static function update($data,$primary){
+        return parent::update($data,$primary);
+    }
+
+    public static function delete($primary){
+        return parent::delete($primary);
     }
 }

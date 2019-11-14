@@ -1,7 +1,12 @@
 <?php
 require_once File::build_path(array('model','Model.php'));
 
-class ModelProduit{
+class ModelProduit extends Model{
+
+    protected static $nomTable = 'rGztzErq-Produits';
+    protected static $nomClasse = 'ModelProduit';
+    protected static $primary= 'idProduit';
+
     private $idProduit;
     private $nomProduit;
     private $description;
@@ -30,15 +35,22 @@ class ModelProduit{
         return false;
     }
 
-    public static function getAllProduits() {
-        $sql = "SELECT* FROM proj_php_Produits;";
-        $rep = Model::$pdo->prepare($sql);
-        $rep->execute();
-        $rep->setFetchMode(PDO::FETCH_CLASS, 'ModelProduit');
-        $tab_voit = $rep->fetchAll();
+    public static function selectAll(){
+        return parent::selectAll();
+    }
+    public static function select($primary_value){
+        return parent::select($primary_value);
+    }
 
-        if (empty($tab_prod))
-            return false;
-        return $tab_prod;
+    public static function insert($data){
+        return parent::insert($data);
+    }
+
+    public static function update($data,$primary){
+        return parent::update($data,$primary);
+    }
+
+    public static function delete($primary){
+        return parent::delete($primary);
     }
 }

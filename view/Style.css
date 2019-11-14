@@ -1,0 +1,1366 @@
+   
+/* ------------------------------------------ DEBUT POLICE ------------------------------------------ */
+
+@font-face{
+	font-family: Quantum;
+	src: url("./view/Images/Fonts/Quantum.otf");
+}
+
+@font-face{
+	font-family: Masque;
+	src: url("./view/Images/Fonts/Masque.ttf");
+}
+
+@font-face{
+	font-family: Champagne;
+	src: url("./view/Images/Fonts/Champagne.ttf");
+}
+
+@font-face{
+	font-family: Panettone;
+	src: url("./view/Images/Fonts/Panettone.otf");
+}
+
+@font-face{
+	font-family: Opera;
+	src: url("./view/Images/Fonts/Opera.otf");
+}
+
+@font-face{
+	font-family: Cool;
+	src: url("./view/Images/Fonts/Cool.ttf");
+}
+
+@font-face{
+	font-family: Comfort;
+	src: url("./view/Images/Fonts/Comfort.ttf");
+}
+
+@font-face{
+	font-family: Geo;
+	src: url("./view/Images/Fonts/Geo.ttf");
+}
+
+@font-face{
+	font-family: Coffee;
+	src: url("./Images/Fonts/Coffee.ttf");
+}
+
+@font-face{
+	font-family: Elegance;
+	src: url("./view/Images/Fonts/Elegance.ttf");
+}
+
+@font-face{
+	font-family: Optimus;
+	src: url("./view/Images/Fonts/Optimus.ttf");
+}
+
+@font-face{
+	font-family: CodeL;
+	src: url("./view/Images/Fonts/Code L.otf");
+}
+
+@font-face{
+	font-family: CodeB;
+	src: url("./view/Images/Fonts/Code B.otf");
+}
+
+/* ------------------------------------------ FIN POLICE ------------------------------------------ */
+
+/* ------------------------------------------ DEBUT GENERAL A CHAQUE PAGE ------------------------------------------ */
+
+/* --- debut main/body --- */
+
+body{
+	width: 100%;
+	margin: 0px;
+}
+
+li{
+	list-style-type: none;
+}
+
+.Holygrail-body{
+	display: flex;
+	line-height: 1.5;
+}
+
+.Holygrail-main{
+	margin: auto;
+	width: 75%;
+	margin-top: 10px;
+	transition: width 0.5s ease-out;
+}
+
+/* --- fin main/body --- */
+
+/* --- debut aside ---*/
+
+aside.Holygrail-asideleft{
+	width: 12.5%;
+	background-color: #EEE8AA;
+	margin-right: 1%;
+	float: left;
+	transition: box-shadow 0.75s ease-out;
+	border-right: ridge #EEE8AA;
+}
+
+aside.Holygrail-asideright{
+	width: 12.5%;
+	background-color: #EEE8AA;
+	margin-left: 1%;
+	float: right;
+	transition: box-shadow 0.75s ease-out;
+	border-left: ridge #EEE8AA;
+}
+
+/* affichage des box shadow au survol avec transition */
+
+aside.Holygrail-asideleft:hover{
+	box-shadow: -4px 10px 30px 0px black;
+}
+
+aside.Holygrail-asideright:hover{
+	box-shadow: 0px 10px 30px -6px black;
+}
+
+/* --- fin aside --- */
+
+/* --- debut footer --- */
+
+footer{
+	background-color: #ce9908;
+	padding-top: 25px;
+	color:black;
+	position: relative;
+	z-index: 1;
+}
+
+footer p{
+	text-align : center;
+}
+
+footer p:first-child{
+	margin: 0px;
+	font-size: 26px;
+	font-family: Champagne;
+}
+
+footer hr{
+	width: 90%;
+	color: white;
+	margin-bottom: 0px;
+	margin-top: 15px;
+}
+
+footer div{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	font-size: 26px;
+	font-family: Champagne;
+}
+
+footer ul:first-child{
+	width: 30%;
+	padding: 0px;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+footer a{
+	text-decoration: none;
+	color: black;
+	transition: color 0.2s ease-out;
+}
+
+footer a:hover{
+	color: whitesmoke;
+}
+
+footer form{
+	display: flex;
+	align-items: center;
+	margin: 0px;
+}
+
+#casenews{
+	display: flex;
+	align-items: center;
+	padding: 0px;
+}
+
+.Réseau img{
+	width:50px;
+	height:50px;
+}
+
+#mail{
+	height: 30px;
+	width: 230px;
+	border: black 1px solid;
+	border-right: none;
+	font-family: Champagne;
+	font-size: 20px;
+	padding-left: 5px;
+	margin-left: 10px;
+}
+
+#copyright{
+	text-align:center;
+	padding-bottom: 20px;
+	padding-top: 10px;
+	margin: 0px;
+}
+
+#submit{
+	font-size: 18px;
+	height: 34px;
+	border: solid 1px black;
+	border-left: none;
+	background-color: lightgray;
+	margin: auto;
+	color: black;
+	cursor: pointer;
+}
+
+
+
+/* --- fin footer --- */
+
+/* ------------------------------------------ FIN GENERAL A CHAQUE PAGE ------------------------------------------ */
+
+/* ------------------------------------------ DEBUT MENU ------------------------------------------ */
+
+header{
+	font-family: Cool;
+	font-weight: bold;
+	background-color: #ce9908;
+	font-size: 26px;
+	box-shadow: 0px 5px 10px 0px black;
+	position: relative;
+	z-index: 5;
+}
+
+/* Couleur de fond du header invisible et couleur du nav dorée pour la vidéo */ 
+
+.Accueil_Holygrail-header {
+	background-color: inherit;
+	box-shadow: none;
+}
+
+.Accueil_Holygrail-nav a{
+	color: #ce9908;
+}
+
+.Accueil_Holygrail-nav ul{
+	height: 100px;
+}
+
+nav ul{
+	margin: auto;
+	width: 75%;
+	display: flex;
+	align-items:center;
+	height: 80px;
+	justify-content: space-evenly;
+}
+
+nav a{
+	text-decoration: none;
+	color: black;
+}
+
+nav li{
+	padding-bottom: 4px;
+}
+
+/* transition au survol des éléments du nav pour faire grossir la police */
+
+#Produit,#Presse,#Equipe,#Contact,#Rejoindre,#FAQ {
+	transition: font-size 0.2s ease-out;
+}
+
+#Produit:hover,#Presse:hover,#Equipe:hover,#Contact:hover{
+	font-size: 34px;
+}
+
+#Rejoindre:hover{
+	font-size: 30px;
+}
+
+#FAQ:hover{
+	font-size: 36px;
+}
+
+#metier_1,#metier_2,#metier_3,#metier_4{
+	font-size: 26px;
+	transition: font-size 0.2s ease-out;
+	text-align: center
+}
+
+#metier_1:hover,#metier_2:hover,#metier_3:hover,#metier_4:hover {
+	font-size: 32px;
+}
+
+/* --- SOUS-MENU --- */
+
+/* affichage du sous menu au survol avec transition sur l'opacité */
+
+.submenu {
+	position:absolute;
+	background-color: #ce9908;
+	top: -220px;
+	width: 	229.217px;
+	opacity: 0;
+	z-index:1;
+	border-bottom: ridge black;
+	border-radius: 5px;
+	transition: opacity 0.5s ease-out;
+}
+
+.Accueil_Holygrail-nav li:hover .submenu{
+	opacity: 1;
+	top: 60%;
+}
+
+nav li:hover .submenu{
+	opacity: 1;
+	top: 90%;
+}
+
+/* Couleur de fond du sous-menu invisible */ 
+
+.Accueil_Holygrail-nav li:hover .submenu{
+	background-color: inherit;
+	border: none;
+}
+
+/* --- MENU BURGER RESPONSIVE --- */
+
+/* Positionnement de la checkbox en opacité 0 pour qu'elle soit invisible */
+
+#Nav_Check{
+	position: relative;
+	z-index: 10;
+	width: 83px;
+	height: 52px;
+	margin: 0px;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.Accueil_Holygrail-header #Nav_Check{
+	width: 83px;
+	height: 80px;
+}
+
+/* Affichage du menu-burger lorsque la checkbox est check avec transition sur le positionnement (left) */
+
+#Nav_Check:checked+#MenuB {
+	display: flex;
+	flex-direction: column;
+	left: 0px;
+}
+
+#MenuB{
+	position: absolute;
+	background-color:#ce9908;
+	border-bottom: ridge black ;
+	margin-top:auto;
+	padding: 0px 10px 0px 10px;
+	top: 50px;
+	left:-240px;
+	transition: left 0.3s ease-out;
+}
+
+.Accueil_Holygrail-header #MenuB {
+	top: 70px;
+}
+
+#MenuBurger{
+	height: 50px;
+}
+
+#MenuBurger a{
+	text-decoration: none;
+	color: black;
+}
+
+/* Changement des couleurs toujours pour la video */ 
+
+.Accueil_Holygrail-header #MenuB {
+	background-color: inherit;
+	box-shadow: none;
+	border: none;
+}
+
+.Accueil_Holygrail-header #MenuB a{
+	color: #ce9908;
+}
+
+/* Image du Header */
+
+img[src="./view/Images/JPEG/Banniere.png"]{
+	width: 100%;
+	height: 100px;
+}
+
+img[src="./view/Images/JPEG/LogoN.png"]{
+	width: 90px;
+	top: -3px;
+	position: absolute;
+	transform: rotate(90deg);
+	transition: transform 1s ease-out;
+}
+
+img[src="./view/Images/JPEG/LogoG.png"]{
+	width: 100px;
+	position:absolute;
+	transition: all 2s ease-out;
+}
+
+img[src="./view/Images/JPEG/LogoN2.png"]{
+	width: 75px;
+	transform: rotate(90deg);
+	top: -11px;
+	position:absolute;
+	z-index: 9;
+}
+
+img[src="./view/Images/JPEG/LogoN.png"]:hover{
+	transform: rotate(6210deg);
+}
+
+/* ------------------------------------------ FIN MENU ------------------------------------------ */
+
+
+/* ------------------------------------------ DEBUT PAGE ACCUEIL ------------------------------------------ */
+
+.Video-Accueil {
+	position: absolute;
+	z-index: -1;
+	width: auto;
+	height: auto;
+	min-width: 100%;
+	min-height: 100%;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%, -60%);
+}
+
+#Accueil_boite-video{
+	position: absolute;
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	top: 0px;
+}
+
+/* ------------------------------------------ FIN PAGE ACCUEIL ------------------------------------------ */
+
+/* ------------------------------------------ DEBUT PAGE PRODUIT ------------------------------------------ */
+
+#Produit_Transition{
+	position: absolute;
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	top: 0px;
+	display: flex;
+	opacity: 1;
+	background-color: #ce9908;
+	z-index: 2;
+}
+
+#Produit_boite-video{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0px;
+	overflow: hidden;
+}
+
+#Produit_boite-video video{
+	position: absolute;
+	z-index: 0;
+	width: auto;
+	height: auto;
+	min-width: 100%;
+	min-height: 100%;
+	top: 35%;
+	left: 50%;
+	transform: translate(-50%, -25%);
+}
+
+#Produit_boite-arrow{
+	display: flex;
+	flex-direction: row-reverse;
+	width: calc(50% + 71px);
+	bottom: 0px;
+}
+
+#Produit_boite-arrow img{
+	position: absolute;
+	bottom: 0px;
+}
+
+#Produit_Checkbox{
+	position: absolute;
+	cursor: pointer;
+	bottom: 0px;
+	width:10%;
+	left:45%;
+	height: 258px;
+	opacity: 0;
+	z-index: 3;
+}
+
+#Produit_Checkbox:checked+#Produit_Transition {
+	transition: top 30s ease;
+	top: -50000px;
+}
+
+#Produit_Checkbox:checked~.Produit_Holygrail-main{
+	display: block;
+}
+
+#Produit_Checkbox:checked{
+	display: none;
+}
+
+.Produit_Holygrail-main{
+	margin: auto;
+	width: 75%;
+	display: none;
+	transition: width 1.5s ease-out;
+}
+
+.Produit_Holygrail-main h1{
+	text-align: center;
+	color: #996515;
+	font-family: Champagne;
+	font-size: 40px;
+	margin-bottom: 0px;
+	margin-top: 10px;
+}
+
+.Produit_Holygrail-main div{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.Produit_Holygrail-main ul{
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	padding: 0px;
+	transition: all 1s ease-out;
+}
+
+.Produit_Holygrail-main li{
+	text-align: justify;
+	margin-top: 10px;
+	font-family: Comfort;
+	font-size: 18px;
+}
+
+.Produit_Holygrail-main img{
+	width: 40%;
+	transition: all 1s ease-out;
+}
+
+/* ------------------------------------------ FIN PAGE PRODUIT ------------------------------------------ */
+
+/* ------------------------------------------ DEBUT PAGE EQUIPE ------------------------------------------ */
+
+.divequipe p{
+	text-align: justify;
+	font-family: Champagne;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.divequipe h1{
+	text-align: center;
+	margin-bottom: 0px;
+	margin-top: 10px;
+	font-family: Champagne;
+	font-size: 40px;
+	color: #996515;
+
+}
+
+.divequipe img{
+	float: left;
+	margin-bottom: 10px;
+	margin-right: 10px; 
+	position: relative;
+}
+
+.divequipe div{
+	display: flex;
+	flex-direction: column;
+	line-height: 1.2;
+	transition: all 1s ease-out;
+}
+
+.divequipe table{
+	margin: auto;
+	text-align: center;
+	border: 2px solid black;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th,td{
+	border: 1px solid black;
+	padding: 5px;
+}
+
+.Equipe_hr{
+	clear: left;
+}
+
+/* ------------------------------------------ FIN PAGE EQUIPE ------------------------------------------ */
+
+/* ------------------------------------------ DEBUT PAGE FAQ ------------------------------------------ */
+
+#questions{
+	color: #996515;
+	padding : 0px 25px 0px 25px;
+}
+
+#questions h1{
+	text-align:center;
+	margin: 10px;
+	font-size: 40px;
+	font-family: Optimus;
+}
+
+#questions h2{
+	margin: 0px;
+	font-size: 30px;
+	font-family: Optimus;
+}
+
+#questions a{
+	color:DimGrey;
+	text-decoration:none;
+	font-size: 24px;
+	font-family: Geo;
+}
+
+#questions a:hover{
+	color:DarkGrey ;
+}
+
+#questions hr, #answer hr{
+	display:flex;
+	margin: 25px auto;
+	height: 2px;
+	background-color: DarkSalmon;
+	border: none;
+	width: 90%;
+}
+
+#answer {
+	padding : 0px 25px 0px 25px;
+}
+
+#answer>div {
+	text-indent :10px;
+}
+
+#answer h1{
+	text-align: center;
+	color: #996515;
+	margin-bottom: 30px;
+	font-size: 40px;
+	font-family: Optimus;
+}
+
+#answer p{
+	font-size: 20px;
+	font-family: Champagne;
+	margin: 0px 10px 15px 20px;	
+	color: DarkSlateGrey;
+}
+
+#answer a{
+	font-size: 20px;
+	font-family: Optimus;
+	color:black;
+}
+
+#answer div:nth-child(2){
+	border-left:solid black;
+}
+
+#answer div:nth-child(4){
+	border-left:solid #333333;
+}
+
+#answer div:nth-child(6){
+	border-left:solid gray;
+}
+
+#answer div:nth-child(8){
+	border-left:solid DarkGray;
+}
+
+#answer div:nth-child(10){
+	border-left:solid LightGray;
+	margin-bottom: 40px;
+}
+
+/* ------------------------------------------ FIN PAGE FAQ ------------------------------------------ */
+
+/* ------------------------------------------ DEBUT CONTACT ------------------------------------------ */
+
+form {
+	margin: 12px;
+}
+
+fieldset{
+	border:2px solid #ce9908;
+    border-radius: 5px;
+}
+
+form input:focus, textarea:focus
+{
+   background-color: #EEE8AA;
+}
+
+legend {
+    padding: 3px 5px;
+    border: 1px solid #ce9908;
+    font-size: 24px;
+    color: #ce9908;
+    border-radius: 3px;
+}
+
+label{
+	display: block;
+	float: left;
+	width: 400px;
+	font-size: 20px;
+	font-family: Champagne;
+	font-weight: bold;
+}
+
+input+label{
+	width: auto;
+}
+
+p input, label+select,textarea{
+	font-size: 16px;
+	font-family: Comfort;
+	font-weight: bold;
+}
+
+p input{
+	height: 25px;
+}
+
+.bouton input{
+	height: auto;
+}
+
+.bouton{
+	display: flex;
+	flex-direction: row;
+}
+
+.mess{
+	display: flex;
+	flex-direction: column;
+}
+
+.mess textarea{
+	height: 100px;
+}
+
+#boutonEnvoyer{
+	width: 200px;
+	border: solid 1px #ce9908;
+	background-color: #EEE8AA;
+	margin: auto;
+	color: black;
+	font-size: 28px;
+	border-radius: 5px;
+	font-family: none;
+	cursor: pointer;
+	display: block;
+	text-decoration: none;
+	transition: background-color 0.5s ease-out
+}
+
+#boutonEnvoyer:hover{
+	background-color: #ce9908;
+}
+
+/* ------------------------------------------ FIN CONTACT ------------------------------------------ */
+
+/* ------------------------------------------ DEBUT PRESSE ------------------------------------------ */
+
+#pressetitre{
+	font-family: Optimus;
+	font-size: 36px;
+	color: #996515;
+	margin: 10px 0px 10px 0px;
+}
+
+.actualité{
+	display: flex;
+	flex-direction: row;
+}
+
+.actualité h5{
+	display: none;
+	margin: 0px;
+	margin-bottom: 5px;
+	font-size: 24px;
+	font-family: Comfort;
+}
+
+.actualité>span{
+	border-left: solid 1px gray;
+	margin-left: 10px;
+	height: 325px;
+}
+
+.statut{
+	display: flex;
+}
+
+.statut h4{
+	margin: 0px;
+	flex-grow: 1;
+	font-size: 20px;
+}
+
+.statut h4:nth-child(2){
+	margin-left: 21px;
+}
+
+.moment{
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	transition: all 0.5s ease-out;
+}
+
+.moment div{
+	display: flex;
+	flex-direction:	row;
+	justify-content: space-between;
+}
+
+.moment span{
+	margin: 0px;
+	text-align: right;
+	font-size: 20px;
+	font-family: Comfort;
+	color: black;
+}
+
+.moment a{
+	text-decoration: none;
+	color: #996515;
+}
+
+.moment h3{
+	margin: 0px;
+}
+
+.moment iframe{
+	transition: all 1s ease-out;
+	height: 300px;
+	border: inherit;
+}
+
+.prochainement{
+	margin-left: 10px;
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	transition: all 0.5s ease-out;
+}
+
+.prochainement ul{
+	padding: 0px;
+	display: flex;
+	flex-direction: column;
+}
+
+.prochainement li{
+	color: #996515;
+	font-size: 20px;
+	font-family: Coffee;
+	border: 1px solid lightgray;
+	text-align: center;
+	margin-right: 10px;
+	padding: 0px 10px 0px 10px;
+	border-top: none;
+}
+
+.prochainement li:first-child{
+	border-bottom: none;
+	border-top: 1px solid lightgray;
+}
+
+.prochainement p{
+	margin: 0px;
+	margin-top: 10px;
+	font-family: Comfort;
+	font-size: 16px;
+}
+
+.prochainement hr{
+	width: 100%;
+	margin: 0px;
+	height: 0.1px;
+}
+
+.prochainement span{
+	border-top: solid 1px gray;
+	margin: 10px 0px 10px 0px;
+}
+
+.titre_prochainement{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.titre_prochainement ul{
+	margin: 0px;
+}
+
+.titre_prochainement h2{
+	margin: 0px;
+	color: #996515;
+	font-family: CodeB;
+}
+
+.articleligne{
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 20px;
+}
+
+.article{
+	display: flex;
+	flex-direction: row;
+	width: 50%;
+}
+
+.article span{
+	position: absolute;
+	font-size: 20px;
+	font-family: Comfort;
+	color: black;
+	z-index: 1;
+}
+
+.article img{
+	width: 200px;
+	height: 200px;
+	opacity: 0.5;
+	transition: opacity 0.3s ease-out;
+}
+
+.article h3{
+	margin: 0px;
+	color: #996515;
+	font-family: Geo;
+}
+
+.article div{
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+	margin: 5px;
+	margin-top: 0px;
+	transition: all 0.5s ease-out;
+}
+
+.article p{
+	margin: 5px;
+	font-family: Comfort;
+	font-size: 14px;
+}
+
+.article a{
+	display: block;
+	margin-top: auto;
+	margin-left: 5px;
+	text-decoration: none;
+	color: #996515;
+	opacity: 0;
+	transition: opacity 0.3s ease-out;
+}
+
+.article:hover .liresuite,.article:hover img{
+	opacity: 1;
+}
+
+.articlevideo{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.articlevideo iframe{
+	position: relative;
+	opacity: 1;
+	width: 100%;
+	height: 300px;	
+	transition: all 1s ease-out;
+}
+
+.articlevideo div{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.articlevideo span{
+	font-size: 20px;
+	font-family: Comfort;
+	color: black;
+	z-index: 1;
+}
+
+.articlevideo h3{
+	margin: 0px;
+	font-family: Geo;
+	color: #996515;
+	font-size: 24px;
+}
+
+.separateur{
+	width: 0px;
+	border-left: 1px black solid;
+	height: 0px;
+	padding-right: 10px;
+	margin-left: 10px;
+}
+
+/* ------------------------------------------ FIN PRESSE ------------------------------------------ */
+
+/* ------------------------------------------ DEBUT REJOINDRE ------------------------------------------ */
+
+main .a_rejoindre{
+	display: block;
+	text-align: center;
+	margin: auto;
+	width: 200px;
+	text-decoration: none;
+	background-color: #EEE8AA;
+	color: black;
+	padding: 10px 20px 10px 20px;
+	border-radius: 5px;
+	border: solid 2px #ce9908;
+	font-family: Coffee;
+	font-size: 30px;
+	transition: background-color 1s ease-out;
+}
+
+main .a_rejoindre:first-child{
+	margin-top: 20px;
+}
+
+main .a_rejoindre:nth-child(7){
+	margin-bottom: 20px;
+}
+
+.a_rejoindre~hr{
+	width: 70%;
+	color: DarkSalmon;
+	margin-top: 20px;
+	margin-bottom: 20px; 
+}
+
+main .a_rejoindre:hover{
+	background-color: #ce9908;
+}
+
+
+/* ------------------------------------------ FIN REJOINDRE ------------------------------------------ */
+
+/* ------------------------------------------ DEBUT METIER ------------------------------------------ */
+
+.metier{
+	text-align: justify;
+	font-family: Comfort;
+}
+
+.metier h1{
+	position: absolute;
+	top: 80px;
+	right: 15%;
+	margin: 0px;
+	color: white;
+	font-family: Geo;
+	font-size: 48px;
+}
+
+.metier img{
+	width: 100%;
+	position: relative;
+}
+
+.metier p{
+	font-size: 15px;
+}
+
+.metier h2{
+	font-size: 22px;
+	color: #996515;
+}
+
+.metier li{
+	list-style-type: initial;
+	font-size: 15px;
+}
+
+.salaire{
+	display: contents;
+}
+
+.salaire span{
+	font-size: 18px;
+}
+
+.IntroMetier{
+	font-weight: bold;
+}
+
+.IntroMetier p{
+	font-size: 16px;
+}
+
+.boutonPostuler{
+	margin: 20px;
+	text-align: center;
+	display: flex;
+	vertical-align: middle;
+}
+
+.boutonPostuler a{
+	width: 200px;
+	border: solid 1px #ce9908;
+	background-color: #EEE8AA;
+	margin: auto;
+	color: black;
+	font-size: 28px;
+	border-radius: 5px;
+	font-family: none;
+	cursor: pointer;
+	display: block;
+	text-decoration: none;
+	transition: background-color 0.5s ease-out
+}
+
+.boutonPostuler a:hover{
+	background-color: #ce9908;
+}
+
+/* ------------------------------------------ FIN METIER ------------------------------------------ */
+ 
+/* ------------------------------------------ DEBUT POSTULER ------------------------------------------ */
+
+.postule fieldset{
+	margin: 15px;
+}
+
+.h1postule{
+	display: block;
+	margin: auto;
+	text-align: center;
+	color: #996515;
+	font-size: 44px;
+	font-family: Geo;
+}
+
+/* ------------------------------------------ FIN POSTULER ------------------------------------------ */
+
+/* ------------------------------------------ DEBUT BOUTIQUE ------------------------------------------ */
+
+.Boutique_Holygrail-main{
+	width: 100%;
+}
+
+#framemap{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 500px;
+	border: solid #dddddd;
+}
+
+/* ------------------------------------------ FIN BOUTIQUE ------------------------------------------ */
+
+/* ------------------------------------------ RESPONSIVE ------------------------------------------ */
+
+@media (max-width: 1200px) {
+
+	aside {
+		display: none;
+	}
+
+	.Produit_Holygrail-main,.Holygrail-main{
+		width: 98%;	
+	}
+
+	.metier h1{
+		right: 3%;
+	}
+}
+
+@media (max-width: 1000px) {
+	.divequipe{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.divequipe div{
+		width: 80%;
+	}
+
+	.Produit_Holygrail-main div{
+		flex-direction: column;
+	}
+
+	.Produit_Holygrail-main div:nth-child(2n+1){
+		flex-direction: column-reverse;
+	}
+
+	nav {
+		display: none;
+	}
+
+	footer{
+		display: none;
+	}
+
+	img[src="./view/Images/JPEG/LogoN.png"],img[src="./view/Images/JPEG/Banniere.png"]{
+		display: none;
+	}
+
+	img[src="./view/Images/JPEG/LogoG.png"]{
+		width: 80px;
+		transform: rotate(-270deg);
+	}
+
+	.metier h1{
+		top: 70px;
+	}
+
+	.statut{
+		display: none;
+	}
+
+	.moment{
+		width: 100%;
+	}
+
+	.prochainement{
+		width: 100%;
+		margin-left: 0px;
+		margin-top: 20px;
+	}
+
+	.actualité{
+		flex-direction: column;
+	}
+
+	.actualité h5{
+		display: block;
+	}
+
+	.actualité span{
+		display: none;
+	}
+
+	.article{
+		flex-direction: column;
+	}
+
+	.article img, .article iframe{
+		display: none;
+	}
+
+	.article div{
+		width: 100%;
+	}
+
+	.article span{
+		position: relative;
+	}
+
+	.article a{
+		opacity: 1;
+	}
+}
+
+@media (min-width: 1000px) {
+	#MenuBurger{
+		display: none;
+	}
+}
+
+@media (max-width: 800px) {
+	.Produit_Holygrail-main ul{
+		width: 90%;
+	}
+
+	.Produit_Holygrail-main img{
+		width: 50%;
+	}
+
+	form p{
+		display: flex;
+		flex-direction: column;
+	}
+	.lbouton{
+		width: auto;
+	}
+
+	.metier img{
+		display: none;
+	}
+
+	.metier h1{
+		color: black;
+		position: initial;
+	}
+}
+
+@media (max-width: 500px){
+	.moment iframe, .articlevideo iframe{
+		height: 250px;
+	}
+
+	.divequipe div{
+		width: 100%;
+	}
+
+	.articleligne{
+		flex-direction: column;
+	}
+
+	.article{
+		width: 100%;
+	}
+}

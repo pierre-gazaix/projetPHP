@@ -5,6 +5,6 @@ $ROOT_FOLDER = $dir . $DS . 'lib'. $DS. 'File.php';
 
 require_once ($ROOT_FOLDER);
 
-require File::build_path(array('controller', 'routeur.php'));
+require_once File::build_path(array('controller', 'routeur.php'));
 
 ?>
