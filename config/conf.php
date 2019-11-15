@@ -4,21 +4,21 @@ class Conf {
     static private $databases = array(
         // Le nom d'hote est webinfo a l'IUT
         // ou localhost sur votre machine
-        'hostname' => 'localhost',
+        'hostname' => 'webinfo',
         // A l'IUT, vous avez une BDD nommee comme votre login
         // Sur votre machine, vous devrez creer une BDD
-        'database' => 'dayyaan',
+        'database' => 'ahamadad',
         // A l'IUT, c'est votre login
         // Sur votre machine, vous avez surement un compte 'root'
-        'login' => 'root',
+        'login' => 'ahamadad',
         // A l'IUT, c'est votre mdp (INE par defaut)
         // Sur votre machine personelle, vous avez creez ce mdp a l'installation
-        'password' => ''
+        'password' => 'ahouioui'
     );
     static private $debug = True;
 
     static public function getDebug(){
-        return self::$$debug;
+        return self::$debug;
     }
 
     static public function getLogin() {
@@ -42,5 +42,4 @@ class Conf {
 
 
 }
-?>
 

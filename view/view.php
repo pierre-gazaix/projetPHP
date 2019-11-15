@@ -22,14 +22,14 @@
 
 <header class="Accueil_Holygrail-header">
 
-    <a href="./view.php"><img src="./view/Images/JPEG/LogoG.png" alt="LogoDevialet"></a>
+    <a href="./index.php"><img src="./view/Images/JPEG/LogoG.png" alt="LogoDevialet"></a>
 
     <div id="MenuBurger">
 
         <input id="Nav_Check" type="checkbox" />
 
         <ul id="MenuB">
-            <li><a href="./view.php">ACCUEIL</a></li>
+            <li><a href="./index.php">ACCUEIL</a></li>
             <li><a href="./view/Produit.html">PRODUIT</a></li>
             <li><a href="./view/Presse.html">PRESSE</a></li>
             <li><a href="./view/Equipe.html">EQUIPE</a></li>
