@@ -2,19 +2,19 @@
 class Conf {
 
     static private $databases = array(
-        // Le nom d'hote est webinfo a l'IUT
-        // ou localhost sur votre machine
-        'hostname' => 'webinfo',
-        // A l'IUT, vous avez une BDD nommee comme votre login
-        // Sur votre machine, vous devrez creer une BDD
-        'database' => 'ahamadad',
-        // A l'IUT, c'est votre login
-        // Sur votre machine, vous avez surement un compte 'root'
-        'login' => 'ahamadad',
-        // A l'IUT, c'est votre mdp (INE par defaut)
-        // Sur votre machine personelle, vous avez creez ce mdp a l'installation
-        'password' => 'ahouioui'
-    );
+    // Le nom d'hote est webinfo a l'IUT
+    // ou localhost sur votre machine
+      'hostname' => 'localhost',
+    // A l'IUT, vous avez une BDD nommee comme votre login
+    // Sur votre machine, vous devrez creer une BDD
+      'database' => 'dayyaan',
+    // A l'IUT, c'est votre login
+    // Sur votre machine, vous avez surement un compte 'root'
+      'login' => 'root',
+    // A l'IUT, c'est votre mdp (INE par defaut)
+    // Sur votre machine personelle, vous avez creez ce mdp a l'installation
+      'password' => ''
+  );
     static private $debug = True;
 
     static public function getDebug(){

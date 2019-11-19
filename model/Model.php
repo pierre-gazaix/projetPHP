@@ -102,7 +102,6 @@ class Model{
         try {
             $pdo = self::$pdo;
             $nomTable = static::$nomTable;
-            $nomClasse = static::$nomClasse;
             $clePrimaire = static::$primary;
 
             $sql = "DELETE FROM `{$nomTable}` 

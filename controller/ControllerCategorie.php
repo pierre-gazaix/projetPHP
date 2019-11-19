@@ -60,7 +60,7 @@ class ControllerCategorie {
             "idCategorie" =>$_POST['idCategorie'],
             "nomCategorie" => $_POST['nomCategorie']);
         $ok = ModelExercices::update($values,$_POST['cat']);
-        $tab_c = ModelVoiture::selectAll();
+        $tab = ModelVoiture::selectAll();
         if(!$ok) {
             $view = 'error';
             $pagetitle = 'Erreur!';

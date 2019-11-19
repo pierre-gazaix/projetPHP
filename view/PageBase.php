@@ -6,18 +6,16 @@
 
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="./view/Style.css" />
-    <link rel="icon" type="image/png" href="./view/Images/JPEG/LogoOnglet.png"
-          sizes="16x16">
+    <link rel="icon" type="image/png" href="./view/Images/JPEG/LogoOnglet.png">
     <title><?php echo $pagetitle; ?></title>
-
 
 </head>
 
 <body>
 
-<header>
+<header class="Accueil_Holygrail-header">
 
-    <a href="./index.php"><img src="./view/Images/JPEG/LogoN.png" alt="LogoDevialet"></a>
+    <a href="./index.php"><img src="./view/Images/JPEG/LogoG.png" alt="LogoDevialet"></a>
 
     <div id="MenuBurger">
 
@@ -34,7 +32,7 @@
         </ul>
     </div>
 
-    <nav>
+    <nav class="Accueil_Holygrail-nav">
         <ul>
             <li id="Produit"><a href="./view/Produit.html">PRODUIT</a></li>
             <li id="Presse"><a href="./view/Presse.html">PRESSE</a></li>
@@ -53,44 +51,11 @@
     </nav>
 
 </header>
-
-<div class="Holygrail-body">
-
-    <main class="Holygrail-main">
-        <?php
-        $filepath = File::build_path(array('view', $controller, "$view.php"));
-        require_once $filepath;
-        ?>
-    </main>
-
-</div>
-
-<footer>
-    <p>Contactez nous via le <strong><a href="./Contact.html">formulaire</a>
-        </strong>, par <strong>téléphone au 0123456789</strong> ou retrouvez nous directement en <strong><a href="./view/Boutique.html">boutique</a></strong>.</p>
-    <hr>
-    <div>
-        <ul class="Réseau">
-            <li>Rejoignez nous</li>
-            <li><a href="https://www.facebook.com/DevialetGlobal/"> <img src="view/Images/JPEG/facebook.png" alt="facebook entreprise" /> </a></li>
-            <li><a href="https://twitter.com/devialet"> <img src="view/Images/JPEG/twitter.png" alt="twitter entreprise" /> </a></li>
-            <li><a href="https://www.linkedin.com/uas/login"> <img src="view/Images/JPEG/linkedin.png" alt="linkedin entreprise" /> </a></li>
-        </ul>
-        <div id="newletters">
-            <form>
-                <p>Newsletters</p>
-                <ul id="casenews">
-                    <li><input type="email" name="email" placeholder="mail@domaine.com" id="mail"></li>
-                    <li><input type="submit" id="submit" value="➤"></li>
-                </ul>
-            </form>
-        </div>
-    </div>
-
-    <p id="copyright"> © 2019 Devialet All right reserved - Legal notices  </p>
-
-</footer>
-
+<main>
+    <?php
+    $filepath = File::build_path(array('view', $controller, "$view.php"));
+    require_once $filepath;
+    ?>
+</main>
 </body>
-
 </html>
