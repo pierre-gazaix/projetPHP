@@ -53,4 +53,22 @@ class ModelProduit extends Model{
     public static function delete($primary){
         return parent::delete($primary);
     }
+
+    public static function selectAllByIdCategorie($id){
+        $req_sql = "SELECT * 
+                    FROM `rGztzErq-Produits` 
+                    WHERE `idCategorie` =:sql_idCategorie";
+        $req_prep = Model::$pdo->prepare($req_sql);
+        $values = array (
+            "sql_idCategorie" => $id,
+        );
+        $req_prep->execute($values);
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, self::$nomClasse);
+        $tab = $req_prep->fetchAll();
+        if(empty($tab))
+            return null;
+        else
+            return $tab;
+    }
+
 }

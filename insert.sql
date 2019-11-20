@@ -22,5 +22,5 @@ ALTER TABLE `rGztzErq-Produits`
   MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT;
   ALTER TABLE `rGztzErq-Produits`
   ADD CONSTRAINT `fk_idCat` FOREIGN KEY (`idCategorie`) REFERENCES `rGztzErq-Categories` (`idCategorie`) ON DELETE CASCADE ON UPDATE CASCADE;
-INSERT INTO `rgztzerq-categories` (`idCategorie`, `nomCategorie`) VALUES (NULL, 'Enceinte'), (NULL, 'Accessoire'), (NULL, 'Pied'), (NULL, 'Support');
-INSERT INTO `rgztzerq-produits` (`idProduit`, `nomProduit`, `description`, `couleur`, `prix`, `idCategorie`) VALUES (NULL, 'Devialet 500', 'Une enceinte révolutionnaire', 'Noir', '2500', '1'), (NULL, 'Housse de protection', 'Une magnifique housse', 'Noir', '250', '2');
+INSERT INTO `rGztzErq-Categories` (`idCategorie`, `nomCategorie`) VALUES (NULL, 'Enceinte'), (NULL, 'Accessoire'), (NULL, 'Pied'), (NULL, 'Support');
+INSERT INTO `rGztzErq-Produits` (`idProduit`, `nomProduit`, `description`, `couleur`, `prix`, `idCategorie`) VALUES (NULL, 'Devialet 500', 'Une enceinte révolutionnaire', 'Noir', '2500', '1'), (NULL, 'Housse de protection', 'Une magnifique housse', 'Noir', '250', '2');

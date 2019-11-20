@@ -116,5 +116,30 @@ class Model{
             return false;
         }
     }
+    public static function orderBy($atrribut, $order){
+        try {
+            $pdo = self::$pdo;
+            $nomTable = static::$nomTable;
+            $nomClasse = static::$nomClasse;
+
+            $sql = "SELECT * 
+                    FROM `{$nomTable}`
+                    ORDER BY `{$nomTable}`. `{:attribut}` :ordre";
+            $requete = $pdo->prepare($sql);
+            $valeur = array(
+                "attribut" => $atrribut,
+                "ordre" => $order);
+
+            $requete->execute($valeur);
+            $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
+            $objet = $requete->fetchAll();
+            if (isset($objet[0]))
+                return $objet[0];
+            else
+                return null;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }
 Model::Init();

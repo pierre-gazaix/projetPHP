@@ -47,4 +47,8 @@ class ModelCategorie extends Model {
     public static function delete($primary){
         return parent::delete($primary);
     }
+//SELECT *
+//FROM `rGztzErq-Categories`c
+//JOIN `rGztzErq-Produits` p ON c.idCategorie = p.idCategorie
+//WHERE p.idCategorie = 1
 }
