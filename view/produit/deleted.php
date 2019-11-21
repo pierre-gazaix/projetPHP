@@ -1,4 +1,4 @@
 <?php $idp_html = htmlspecialchars($p->get('idProduit'));
-echo '<p>La voiture '.($idp_html).' a bien été supprimée !</p>';
+echo '<p>Le produit '.($idp_html).' a bien été supprimé !</p>';
 require File::build_path(array('view','produit', 'list.php'));//redirige vers la vue
 ?>

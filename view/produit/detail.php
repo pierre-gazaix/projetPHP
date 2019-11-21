@@ -10,17 +10,19 @@ echo""
     ."<p>"
     ."".($idp_html). ": ".$nomp_html
     ."<br>"
-    ."Descprition".$desc_html
+    ."Descprition: ".$desc_html
     ."<br>"
-    ."Couleur :" .$coul_html
+    ."Couleur : " .$coul_html
     ."<br>"
-    ."Prix:".$p_html
+    ."Prix: ".$p_html
     ."<br>"
-    ."idCategorie:".$idc_html
+    ."idCategorie: ".$idc_html
     ."<br>"
+    ." <div class=\"boutonPostuler\">"
     ."<a href = \"?action=update&controller=produit&idp=".$idp_url
     ."\"> Modifier</a>"
     ."<a href = \"?action=delete&controller=produit&idp=". $idp_url
     ."\"> Supprimer</a>"
     ."<a href=?action=readAll> Retour </a>"
+    ."</div>"
     ."</p>";

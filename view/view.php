@@ -55,6 +55,14 @@
 </header>
 
 <div class="Holygrail-body">
+    <aside class="Holygrail-asideleft">
+        <?php
+        if($view == 'list' ||$view == 'updated' ||$view == 'created'  ) {
+            $filepath = File::build_path(array('view', $controller, "filter.php"));
+            require_once $filepath;
+        }
+        ?>
+    </aside>
 
     <main class="Holygrail-main">
         <?php
@@ -62,6 +70,9 @@
         require_once $filepath;
         ?>
     </main>
+    <aside class="Holygrail-asideright">
+
+    </aside>
 
 </div>
 

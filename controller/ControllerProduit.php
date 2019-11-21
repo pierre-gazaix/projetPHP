@@ -24,6 +24,13 @@ class ControllerProduit {
         }
         require File::build_path(array('view', 'view.php'));
     }
+    public static function order(){
+        $tab_p = ModelProduit::orderBy($_GET['attribut'], 'ASC');
+        $controller = 'produit';
+        $view = 'ordered';
+        $pagetitle = 'Produit trié';
+        require File::build_path(array('view', 'view.php'));
+    }
     public static function create(){
         $tab_c = ModelCategorie::selectAll();
         $p = new ModelProduit();
