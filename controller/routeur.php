@@ -5,7 +5,7 @@ require_once (File::build_path(array('controller','ControllerProduit.php')));
     if (isset($_GET['controller'])){
         $controller = $_GET['controller'];
     }else{
-        $controller = 'produit';
+        $controller = '';
     }
     $controller_class = 'Controller'.ucfirst($controller);
     if(class_exists($controller_class)) {
