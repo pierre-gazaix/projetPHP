@@ -9,7 +9,7 @@ class ControllerPanier{
             $panier[$_POST['idProduit']] = $_POST['quantite'];
         }
         setcookie("panier", serialize($panier),time()+900);
-        header('Location: ./index.php?controller=Panier&action=read');
+        header('Location: ./index.php?controller=panier&action=read');
         exit();
     }
     public static function read(){
