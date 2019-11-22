@@ -15,7 +15,12 @@ foreach ($tab_p as $p){
         .>$idp_html $nom_html</a>"
         ."<a href=?action=update&controller=produit&idp=$idp_url
         .> Modifier</a>"
+
         ."<a href=?action=delete&controller=produit&idp=$idp_url
         .> Supprimer</a>"
+
+        ."<a href=?action=read&controller=panier
+        .> Ajouter au panier</a>"
+
         ."</p>";
 }

@@ -31,6 +31,7 @@
             <li><a href="./view/Contact.html">CONTACT</a></li>
             <li><a href="./view/Rejoindre.html">NOUS REJOINDRE</a></li>
             <li><a href="./view/FAQ.html">FAQ</a></li>
+            <li><a href="./view/panier.php">PANIER</a></li>
         </ul>
     </div>
 
@@ -49,6 +50,7 @@
                 </div>
             </li>
             <li id="FAQ"><a href="./view/FAQ.html">FAQ</a></li>
+            <li id="panier"><a href="./view/panier.php">PANIER</a></li>
         </ul>
     </nav>
 

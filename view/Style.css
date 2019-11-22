@@ -374,7 +374,7 @@ nav li:hover .submenu{
 	margin-top:auto;
 	padding: 0px 10px 0px 10px;
 	top: 50px;
-	left:-240px;
+	left:-500px;
 	transition: left 0.3s ease-out;
 }
 
@@ -411,8 +411,8 @@ img[src="./view/Images/JPEG/Banniere.png"]{
 }
 
 img[src="./view/Images/JPEG/LogoN.png"]{
-	width: 90px;
-	top: -3px;
+	width: 80px;
+	top: -15px;
 	position: absolute;
 	transform: rotate(90deg);
 	transition: transform 1s ease-out;
@@ -438,9 +438,53 @@ img[src="./view/Images/JPEG/LogoN2.png"]{
 	position:absolute;
 	z-index: 9;
 }
+img[src="./Images/JPEG/LogoN2.png"]{
+	width: 75px;
+	transform: rotate(90deg);
+	top: -11px;
+	position:absolute;
+	z-index: 9;
+}
 
 img[src="./view/Images/JPEG/LogoN.png"]:hover{
 	transform: rotate(6210deg);
+}
+img[src="./view/Images/JPEG/atc.png"]{
+	width: 35px;
+}
+img[src="./view/Images/JPEG/del.png"]{
+	width: 25px;
+}
+img[src="./view/Images/JPEG/rouage.png"]{
+	width: 25px;
+}
+
+a {
+	outline: none;
+	text-decoration: none;
+	padding: 2px 1px 0;
+}
+
+a:link {
+	color: #996515;
+}
+
+a:visited {
+	color: #996515;
+}
+
+a:focus {
+	border-bottom: 1px solid;
+	background: #BAE498;
+}
+
+a:hover {
+	background: #fefdc1;
+}
+
+a:active {
+	background: #997000;
+	color: #CDFEAA;
 }
 
 /* ------------------------------------------ FIN MENU ------------------------------------------ */
