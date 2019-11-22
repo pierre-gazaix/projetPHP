@@ -22,7 +22,7 @@
 
         <header class="Accueil_Holygrail-header">
 
-            <a href="./Accueil.php"><img src="./Images/JPEG/LogoG.png" alt="LogoDevialet"></a>
+            <a href="./view/viewAccueil.php"><img src="./Images/JPEG/LogoG.png" alt="LogoDevialet"></a>
 
             <div id="MenuBurger">
 

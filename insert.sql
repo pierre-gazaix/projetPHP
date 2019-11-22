@@ -24,7 +24,12 @@ ALTER TABLE `rGztzErq-Produits`
   ALTER TABLE `rGztzErq-Produits`
   ADD CONSTRAINT `fk_idCat` FOREIGN KEY (`idCategorie`) REFERENCES `rGztzErq-Categories` (`idCategorie`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-INSERT INTO `rGztzErq-Categories` (`idCategorie`, `nomCategorie`) VALUES ('1', 'Enceinte'), ('2', 'Accessoire'), ('3', 'Amplificateur');
+CREATE TABLE `rGztzErq-Utilisateurs` (
+    `login` VARCHAR(25) NOT NULL ,
+    `nom` VARCHAR(20) NOT NULL ,
+    `prenom` VARCHAR(20) NOT NULL ,
+    `mdp` VARCHAR(64) NOT NULL ,
+    PRIMARY KEY (`login`)) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `rGztzErq-Produits` (`idProduit`, `nomProduit`, `description`, `couleur`, `prix`, `quantite`, `idCategorie`)
 VALUES ('1', 'Classic Phantom', 'La classique !', 'Blanc', '1790', '15', '1'),
@@ -58,3 +63,6 @@ VALUES ('21', 'Expert 140 pro', 'Si vous avez toujours de l\'argent, dépensez l
        ('25', 'Expert 440 pro dual', 'Même principe que le Expert 210 pro dual, en plus cher et plus performant.', 'Gris', '14900', '15', '3'),
        ('26', 'Expert 1000 pro dual', 'Même principe que le Expert 440 pro dual, en plus cher et plus performant.', 'Gris', '27900', '10', '3');
 
+INSERT INTO `rGztzErq-Utilisateurs` (`login`, `nom`, `prenom`, `mdp`)
+VALUES ('ahamadad', 'Ahamada', 'Dayyaan', ''),
+       ('gazaixp', 'Gazaix', 'Pierre', '');
