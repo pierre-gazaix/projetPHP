@@ -1,3 +1,6 @@
+DROP TABLE `rGztzErq-Categories`;
+DROP TABLE `rGztzErq-Produits`;
+
 CREATE TABLE `rGztzErq-Categories` (
   `idCategorie` int(11) NOT NULL,
   `nomCategorie` varchar(50) NOT NULL

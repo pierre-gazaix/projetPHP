@@ -450,7 +450,7 @@ img[src="./view/Images/JPEG/LogoN.png"]:hover{
 	transform: rotate(6210deg);
 }
 img[src="./view/Images/JPEG/atc.png"]{
-	width: 35px;
+	width: 23px;
 }
 img[src="./view/Images/JPEG/del.png"]{
 	width: 25px;
@@ -476,10 +476,6 @@ a:visited {
 a:focus {
 	border-bottom: 1px solid;
 	background: #BAE498;
-}
-
-a:hover {
-	background: #fefdc1;
 }
 
 a:active {

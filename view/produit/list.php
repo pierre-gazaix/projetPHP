@@ -17,10 +17,16 @@ foreach ($tab_p as $p){
         .> Modifier</a>"
 
         ."<a href=?action=delete&controller=produit&idp=$idp_url
-        .> Supprimer</a>"
+        .> Supprimer</a>"?>
 
-        ."<a href=?action=read&controller=panier
-        .> Ajouter au panier</a>"
+    <form method="post" action="?action=add&controller=panier">
+        <input class="form-control" type=" " placeholder="Quantité" min ="1"
+               max"<?php echo $p->get('quantite');?>" step="1" name="quantite" id="quantite_id value="" required />
+        <input type="hidden" name="idProduit" id=""idProduit" value="<?php echo $p->get('idProduit');?>" />
+        <button class ="btn btn-info my-4 btn-block orange accent-4" type="submit">
+            <img src="./view/Images/JPEG/atc.png" alt="atc">
+        </button>
+    </form>
+        <?php "</p>";
 
-        ."</p>";
 }
