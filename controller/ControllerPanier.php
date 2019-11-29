@@ -33,7 +33,7 @@ class ControllerPanier{
     public static function delete(){
         $panier = unserialize(($_COOKIE['panier']));
         unset($panier[$_GET['idProduit']]);
-        setcookie("panier", $panier[$_GET['idProduit']],time()+900);
+        setcookie("panier", serialize($panier),time()+900);
         header('Location: ./index.php?controller=Panier&action=read');
         exit();
     }
