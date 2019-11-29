@@ -473,15 +473,6 @@ a:visited {
 	color: #996515;
 }
 
-a:focus {
-	border-bottom: 1px solid;
-	background: #BAE498;
-}
-
-a:active {
-	background: #997000;
-	color: #CDFEAA;
-}
 
 /* ------------------------------------------ FIN MENU ------------------------------------------ */
 
