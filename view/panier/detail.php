@@ -1,7 +1,10 @@
 <?php
-if (!isset ($_COOKIE['panier']))
+if (!isset ($_COOKIE['panier']) || empty($panier))
     echo "Votre panier est vide!";
 else{
+    ?>
+    <a href=?action=deleteAll&controller=panier>Vider panier</a>
+    <?php
     $totalProduit = 0;
     $total = 0;
     echo "<legend>Votre panier</legend>"
@@ -38,4 +41,5 @@ else{
     <?php echo $total?>
 €</div>
 </legend>
+    <a class="a_rejoindre" href="../index.php?controller=panier&action=buy">Passer la commande</a>
 <?php }

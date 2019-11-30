@@ -4,7 +4,6 @@ require_once File::build_path(array('model', 'ModelProduit.php'));// chargement 
 class ControllerPanier{
 
     public static function add (){
-        echo 'yes';
         if (!isset($_COOKIE['panier'])) {
             $panier[$_POST['idProduit']] = $_POST['quantite'];
         }
@@ -32,9 +31,14 @@ class ControllerPanier{
     }
     public static function delete(){
         $panier = unserialize(($_COOKIE['panier']));
-        unset($panier[$_GET['idProduit']]);
+        unset($panier[$_GET['idp']]);
         setcookie("panier", serialize($panier),time()+900);
         header('Location: ./index.php?controller=Panier&action=read');
         exit();
+    }
+    public static function buy (){
+        $controller = 'panier';
+        $view = 'Acheté';
+        $pagetitle = 'Votre panier';
     }
 }

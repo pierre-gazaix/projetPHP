@@ -4,11 +4,16 @@ if ($_GET['action'] == 'update') {
     $champ = 'readonly';
     $action = 'updated';
     $legend = 'Création du produit';
+    $select = 'disabled';
+    $value ='value='.$cat->get('idCategorie');
 }else {
     $champ = 'required';
     $action = 'created';
     $legend = 'Modification du produit';
+    $select ='';
+    $value ='';
 }
+var_dump($champ);
 ?>
 <form method="get" action="">
     <fieldset>
@@ -41,14 +46,14 @@ if ($_GET['action'] == 'update') {
         </p>
         <p>
             <label for="idCategorie_id">Catégorie</label>
-            <select name="idC" id="idCategorie_id"  <?php echo $champ;?>="true">
-                <option>Associez une catégorie</option>
+            <select name="idC" id="idCategorie_id" <?php echo $value;?> <?php echo $champ;?>="true"  <?php// echo $select;?> >
+                <option value=""> Associez une catégorie</option>
 
                 <?php
                 //Boucle qui permet de récupérer tous les noms des catégories
                 foreach($tab_c as $catégorie) {
                     if ($_GET['action'] == 'update'){
-                        echo '<option selected="selected" value="' . '">' . $cat->get('nomCategorie') . '</option>';
+                        echo ' <option selected="selected" value="' .$cat->get('idCategorie'). '">' . $cat->get('nomCategorie') . '</option>';
                     }else{
                         echo '<option value="' . $catégorie->get('idCategorie') . '">' . $catégorie->get('nomCategorie') . '</option>';
                     }

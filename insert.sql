@@ -1,38 +1,64 @@
-DROP TABLE `rGztzErq-Categories`;
+DROP TABLE `rGztzErq-LignesCommande`;
+DROP TABLE `rGztzErq-Commandes`;
 DROP TABLE `rGztzErq-Produits`;
+DROP TABLE `rGztzErq-Categories`;
+DROP TABLE `rGztzErq-Utilisateurs`;
 
-CREATE TABLE `rGztzErq-Categories` (
-  `idCategorie` int(11) NOT NULL,
-  `nomCategorie` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-ALTER TABLE `rGztzErq-Categories`
-  ADD PRIMARY KEY (`idCategorie`);
-  ALTER TABLE `rGztzErq-Categories`
-  MODIFY `idCategorie` int(11) NOT NULL AUTO_INCREMENT;
+CREATE TABLE `rGztzErq-Categories`(
+  `idCategorie` INT(11) NOT NULL AUTO_INCREMENT,
+  `nomCategorie` VARCHAR(500) NOT NULL ,
+  PRIMARY KEY (`idCategorie`))
+  ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
 
-  CREATE TABLE `rGztzErq-Produits` (
-  `idProduit` int(11) NOT NULL,
-  `nomProduit` varchar(50) NOT NULL,
-  `description` varchar(500) NOT NULL,
-  `couleur` varchar(24) NOT NULL,
-  `prix` int(11) NOT NULL,
-  `quantite` int(11) NOT NULL,
- `idCategorie` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `rGztzErq-Produits` (
+  `idProduit` INT(11) NOT NULL AUTO_INCREMENT,
+  `nomProduit` VARCHAR(500),
+  `description` VARCHAR(15000),
+  `couleur` VARCHAR(24),
+  `prix` INT(12),
+  `quantite` INT(11),
+  `idCategorie` INT(11),
+   PRIMARY KEY (`idProduit`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
+
 ALTER TABLE `rGztzErq-Produits`
-  ADD PRIMARY KEY (`idProduit`),
-  ADD KEY `fk_idCat` (`idCategorie`);
-  ALTER TABLE `rGztzErq-Produits`
-  MODIFY `idProduit` int(11) NOT NULL AUTO_INCREMENT;
-  ALTER TABLE `rGztzErq-Produits`
-  ADD CONSTRAINT `fk_idCat` FOREIGN KEY (`idCategorie`) REFERENCES `rGztzErq-Categories` (`idCategorie`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD FOREIGN KEY (`idCategorie`)
+  REFERENCES `rGztzErq-categories`(`idCategorie`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE `rGztzErq-Utilisateurs` (
-    `login` VARCHAR(25) NOT NULL ,
-    `nom` VARCHAR(20) NOT NULL ,
-    `prenom` VARCHAR(20) NOT NULL ,
-    `mdp` VARCHAR(64) NOT NULL ,
-    PRIMARY KEY (`login`)) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+  `login` VARCHAR(25) NOT NULL ,
+  `nom` VARCHAR(20) NOT NULL ,
+  `prenom` VARCHAR(20) NOT NULL ,
+  `mdp` VARCHAR(64) NOT NULL ,
+  PRIMARY KEY (`login`)) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `rGztzErq-Commandes`(
+  `idCommande` INT(11) NOT NULL,
+  `dateCommande` DATE NOT NULL,
+  `login` VARCHAR(25) NOT NULL,
+  `montantCommande` INT(12) NOT NULL,
+  `etatCommande` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`idCommande`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
+
+ALTER TABLE `rGztzErq-Commandes`
+ADD FOREIGN KEY (`login`)
+REFERENCES `rGztzErq-utilisateurs`(`login`)
+ON DELETE CASCADE ON UPDATE CASCADE;
+
+CREATE TABLE `rGztzErq-LignesCommande`(
+  `idCommande` INT(11) NOT NULL,
+  `idProduit` INT(11) NOT NULL,
+  PRIMARY KEY (`idCommande`, `idProduit`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
+ALTER TABLE `rGztzErq-LignesCommande`
+  ADD FOREIGN KEY (`idCommande`)
+  REFERENCES `rgztzerq-commandes`(`idCommande`)
+  ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD FOREIGN KEY (`idProduit`)
+  REFERENCES `rgztzerq-produits`(`idProduit`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+INSERT INTO `rGztzErq-categories` (`idCategorie`, `nomCategorie`)
+VALUES ('1', 'Enceinte'), ('2', 'Pied'), ('3', 'Accessoire');
 
 INSERT INTO `rGztzErq-Produits` (`idProduit`, `nomProduit`, `description`, `couleur`, `prix`, `quantite`, `idCategorie`)
 VALUES ('1', 'Classic Phantom', 'La classique !', 'Blanc', '1790', '15', '1'),
@@ -45,10 +71,8 @@ VALUES ('1', 'Classic Phantom', 'La classique !', 'Blanc', '1790', '15', '1'),
        ('8', 'Phantom Reactor 900', 'Un peu plus chère que la Phantom Reactor 600, pour les un peu moins pauvres.', 'Noir', '1290', '30', '1'),
        ('9', 'Phantom Reactor 1200', 'Un peu plus chère que la Phantom Reactor 900, pour les un peu moins pauvres.', 'Blanc', '1590', '30', '1'),
        ('10', 'Phantom Reactor 1200', 'Un peu plus chère que la Phantom Reactor 900, pour les un peu moins pauvres.', 'Noir', '1590', '20', '1'),
-       ('11', 'Phantom Royality', 'L\'enceinte des rois.', 'Rose', '4200', '0', '1');
-
-INSERT INTO `rGztzErq-Produits` (`idProduit`, `nomProduit`, `description`, `couleur`, `prix`, `quantite`, `idCategorie`)
-VALUES ('12', 'Pieds', 'Des petits pieds pour votre petite enceinte.', 'Blanc', '149', '100', '2'),
+       ('11', 'Phantom Royality', 'L\'enceinte des rois.', 'Rose', '4200', '0', '1'),
+       ('12', 'Pieds', 'Des petits pieds pour votre petite enceinte.', 'Blanc', '149', '100', '2'),
        ('13', 'Pieds', 'Des petits pieds pour votre petite enceinte.', 'Noir', '149', '90', '2'),
        ('14', 'Cocoon', 'Un petit sac pour transporter votre mignonne enceinte.', 'Noir', '249', '150', '2'),
        ('15', 'Cocoon', 'Un petit sac pour transporter votre mignonne enceinte.', 'Blanc', '249', '140', '2'),
@@ -56,10 +80,8 @@ VALUES ('12', 'Pieds', 'Des petits pieds pour votre petite enceinte.', 'Blanc', 
        ('17', 'Gecko', 'Collez, décollez et recollez votre enceinte partout !', 'Blanc', '199', '60', '2'),
        ('18', 'Gecko', 'Collez, décollez et recollez votre enceinte partout !', 'Noir', '199', '60', '2'),
        ('19', 'Dialog', 'Faites en sorte que vos enceintes parlent en même temps. Evitons un brouhaha inutile avec Dialog.', 'Gris', '299', '35', '2'),
-       ('20', 'Remote', 'Contrôlez vos enceintes même depuis votre canapé, flemmard !', 'Gris', '149', '25', '2');
-
-INSERT INTO `rGztzErq-Produits` (`idProduit`, `nomProduit`, `description`, `couleur`, `prix`, `quantite`, `idCategorie`)
-VALUES ('21', 'Expert 140 pro', 'Si vous avez toujours de l\'argent, dépensez le pour améliorer la qualité du son de vos enceintes.', 'Gris', '4990', '50', '3'),
+       ('20', 'Remote', 'Contrôlez vos enceintes même depuis votre canapé, flemmard !', 'Gris', '149', '25', '2'),
+       ('21', 'Expert 140 pro', 'Si vous avez toujours de l\'argent, dépensez le pour améliorer la qualité du son de vos enceintes.', 'Gris', '4990', '50', '3'),
        ('22', 'Expert 220 pro', 'Même principe que le Expert 140 pro, en plus cher et plus performant.', 'Gris', '7990', '45', '3'),
        ('23', 'Expert 250 pro', 'Même principe que le Expert 220 pro, en plus cher et plus performant.', 'Gris', '14990', '40', '3'),
        ('24', 'Expert 210 pro dual', 'Si vous avez toujours de l\'argent, dépensez le pour améliorer la qualité du son de vos enceintes.', 'Gris', '9900', '20', '3'),
@@ -69,3 +91,13 @@ VALUES ('21', 'Expert 140 pro', 'Si vous avez toujours de l\'argent, dépensez l
 INSERT INTO `rGztzErq-Utilisateurs` (`login`, `nom`, `prenom`, `mdp`)
 VALUES ('ahamadad', 'Ahamada', 'Dayyaan', ''),
        ('gazaixp', 'Gazaix', 'Pierre', '');
+
+INSERT INTO `rgztzerq-commandes` (`idCommande`, `dateCommande`, `login`, `montantCommande`, `etatCommande`)
+VALUES
+        ('0', '2019-11-07', 'gazaixp', '15000', 'En cours'),
+        ('1', '2019-11-03', 'ahamadad', '8100', 'Passé CB');
+
+INSERT INTO `rgztzerq-lignescommande` (`idCommande`, `idProduit`)
+VALUES
+       ('1', '19'), ('1', '16'),
+       ('1', '23'), ('0', '7');

@@ -100,6 +100,7 @@ class Model{
             $requete->execute();
             return true;
         }catch(PDOException $e){
+            echo $e->getMessage();
             return false;
         }
     }
@@ -115,6 +116,7 @@ class Model{
             $sql = "UPDATE `{$nomTable}` 
                     SET ".implode(', ', $setColumn)."
                     WHERE `{$clePrimaire}`=:sql_pk";
+            var_dump($sql);
             $requete = $pdo->prepare($sql);
             $valeur = array(
                 "sql_pk" => $primary);
@@ -122,6 +124,7 @@ class Model{
             $requete->execute($valeur);
             return true;
         }catch (PDOException $e){
+            echo $e->getMessage();
             return false;
         }
     }
