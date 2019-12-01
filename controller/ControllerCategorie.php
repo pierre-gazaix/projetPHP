@@ -33,8 +33,8 @@ class ControllerCategorie {
         $values = array(
             "idCategorie" =>$_POST['idCategorie'],
             "nomnCategorie" => $_POST['nomCategorie']);
-        $ok = ModelExercices::insert($values);
-        $tab_c = ModelExercices::selectAll();
+        $ok = ModelCategorie::insert($values);
+        $tab_c = ModelCategorie::selectAll();
         if (!$ok) {
             $view = 'error';
             $pagetitle = 'ERREUR';
@@ -59,8 +59,8 @@ class ControllerCategorie {
         $values = array(
             "idCategorie" =>$_POST['idCategorie'],
             "nomCategorie" => $_POST['nomCategorie']);
-        $ok = ModelExercices::update($values,$_POST['cat']);
-        $tab = ModelVoiture::selectAll();
+        $ok = ModelCategorie::update($values,$_POST['cat']);
+        $tab = ModelCategorie::selectAll();
         if(!$ok) {
             $view = 'error';
             $pagetitle = 'Erreur!';

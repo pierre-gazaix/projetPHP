@@ -13,7 +13,6 @@ if ($_GET['action'] == 'update') {
     $select ='';
     $value ='';
 }
-var_dump($champ);
 ?>
 <form method="get" action="">
     <fieldset>

@@ -31,26 +31,20 @@
             <li><a href="./view/Contact.html">CONTACT</a></li>
             <li><a href="./view/Rejoindre.html">NOUS REJOINDRE</a></li>
             <li><a href="./view/FAQ.html">FAQ</a></li>
-            <li><a href="./view/panier.php">PANIER</a></li>
+            <li id="panier"><a  href="?controller=Panier&action=read">PANIER</a></li>
+            <li id="panier"><a  href="?controller=commande&action=read">VOS COMMANDES</a></li>
         </ul>
     </div>
 
     <nav>
         <ul>
             <li id="Produit"><a href="./view/Produit.html">PRODUIT</a></li>
-            <li id="Presse"><a href="./view/Presse.html">PRESSE</a></li>
             <li id="Equipe"><a href="./view/Equipe.html">EQUIPE</a></li>
             <li id="Contact"><a href="./view/Contact.html">CONTACT</a></li>
-            <li id="Rejoindre"><a href="./view/Rejoindre.html">NOUS REJOINDRE</a>
-                <div class="submenu">
-                    <div id="metier_1"><a href="./view/metier_1.html">● Métier 1 ●</a></div>
-                    <div id="metier_2"><a href="./view/metier_2.html">● Métier 2 ●</a></div>
-                    <div id="metier_3"><a href="./view/metier_3.html">● Métier 3 ●</a></div>
-                    <div id="metier_4"><a href="./view/metier_4.html">● Métier 4 ●</a></div>
-                </div>
             </li>
             <li id="FAQ"><a href="./view/FAQ.html">FAQ</a></li>
-            <li id="panier"><a href="./view/panier.php">PANIER</a></li>
+            <li id="panier"><a  href="?controller=Panier&action=read">PANIER</a></li>
+            <li id="panier"><a  href="?controller=commande&action=read">VOS COMMANDES</a></li>
         </ul>
     </nav>
 
@@ -59,10 +53,10 @@
 <div class="Holygrail-body">
     <aside class="Holygrail-asideleft">
         <?php
-        if($view == 'list' ||$view == 'updated' ||$view == 'created'  ) {
+        /*if($view == 'list' ||$view == 'updated' ||$view == 'created'  ) {
             $filepath = File::build_path(array('view', $controller, "filter.php"));
             require_once $filepath;
-        }
+        }*/
         ?>
     </aside>
 

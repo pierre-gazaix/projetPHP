@@ -36,9 +36,4 @@ class ControllerPanier{
         header('Location: ./index.php?controller=Panier&action=read');
         exit();
     }
-    public static function buy (){
-        $controller = 'panier';
-        $view = 'Acheté';
-        $pagetitle = 'Votre panier';
-    }
 }

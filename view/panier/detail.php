@@ -6,7 +6,7 @@ else{
     <a href=?action=deleteAll&controller=panier>Vider panier</a>
     <?php
     $totalProduit = 0;
-    $total = 0;
+    $totalPanier = 0;
     echo "<legend>Votre panier</legend>"
     ."<hr>";
     foreach ($panier as $idP => $qte){
@@ -15,7 +15,7 @@ else{
         $description = $p->get('description');
         $prix = $p->get('prix');
         $totalProduit = $prix*$qte;
-        $total +=$totalProduit;
+        $totalPanier +=$totalProduit;
         $idp_url = rawurlencode($p->get('idProduit'));
         if($p->get('quantite') == 0)
             $enStock = 'Rupture de stock';
@@ -38,8 +38,11 @@ else{
         <?php
     }?>
 <legend>Total<div style="text-align:right">
-    <?php echo $total?>
+    <?php echo $totalPanier?>
 €</div>
 </legend>
-    <a class="a_rejoindre" href="../index.php?controller=panier&action=buy">Passer la commande</a>
+    <form action="?controller=commande&action=buy" method="post">
+    <input type="hidden" name="mc" id="mc_id" value= <?php echo $totalPanier?>>
+    <input type="hidden" name="mc" id="mc_id" value= <?php echo $totalPanier?>>
+        <input type="submit" value="Passer la commande" />
 <?php }

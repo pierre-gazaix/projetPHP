@@ -5,57 +5,57 @@ DROP TABLE `rGztzErq-Categories`;
 DROP TABLE `rGztzErq-Utilisateurs`;
 
 CREATE TABLE `rGztzErq-Categories`(
-  `idCategorie` INT(11) NOT NULL AUTO_INCREMENT,
-  `nomCategorie` VARCHAR(500) NOT NULL ,
-  PRIMARY KEY (`idCategorie`))
+                                    `idCategorie` INT(11) NOT NULL AUTO_INCREMENT,
+                                    `nomCategorie` VARCHAR(500) NOT NULL ,
+                                    PRIMARY KEY (`idCategorie`))
   ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE `rGztzErq-Produits` (
-  `idProduit` INT(11) NOT NULL AUTO_INCREMENT,
-  `nomProduit` VARCHAR(500),
-  `description` VARCHAR(15000),
-  `couleur` VARCHAR(24),
-  `prix` INT(12),
-  `quantite` INT(11),
-  `idCategorie` INT(11),
-   PRIMARY KEY (`idProduit`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
+                                   `idProduit` INT(11) NOT NULL AUTO_INCREMENT,
+                                   `nomProduit` VARCHAR(500),
+                                   `description` VARCHAR(15000),
+                                   `couleur` VARCHAR(24),
+                                   `prix` INT(12),
+                                   `quantite` INT(11),
+                                   `idCategorie` INT(11),
+                                   PRIMARY KEY (`idProduit`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
 
 ALTER TABLE `rGztzErq-Produits`
   ADD FOREIGN KEY (`idCategorie`)
-  REFERENCES `rGztzErq-categories`(`idCategorie`)
-  ON DELETE CASCADE ON UPDATE CASCADE;
+    REFERENCES `rGztzErq-categories`(`idCategorie`)
+    ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE `rGztzErq-Utilisateurs` (
-  `login` VARCHAR(25) NOT NULL ,
-  `nom` VARCHAR(20) NOT NULL ,
-  `prenom` VARCHAR(20) NOT NULL ,
-  `mdp` VARCHAR(64) NOT NULL ,
-  PRIMARY KEY (`login`)) ENGINE = InnoDB DEFAULT CHARSET=utf8;
+                                       `login` VARCHAR(25) NOT NULL ,
+                                       `nom` VARCHAR(20) NOT NULL ,
+                                       `prenom` VARCHAR(20) NOT NULL ,
+                                       `mdp` VARCHAR(64) NOT NULL ,
+                                       PRIMARY KEY (`login`)) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `rGztzErq-Commandes`(
-  `idCommande` INT(11) NOT NULL,
-  `dateCommande` DATE NOT NULL,
-  `login` VARCHAR(25) NOT NULL,
-  `montantCommande` INT(12) NOT NULL,
-  `etatCommande` VARCHAR(15) NOT NULL,
-  PRIMARY KEY (`idCommande`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
+                                   `idCommande` INT(11) NOT NULL AUTO_INCREMENT,
+                                   `dateCommande` DATE NOT NULL,
+                                   `login` VARCHAR(25) NOT NULL,
+                                   `montantCommande` INT(12) NOT NULL,
+                                   `etatCommande` VARCHAR(15) NOT NULL,
+                                   PRIMARY KEY (`idCommande`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
 
 ALTER TABLE `rGztzErq-Commandes`
-ADD FOREIGN KEY (`login`)
-REFERENCES `rGztzErq-utilisateurs`(`login`)
-ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD FOREIGN KEY (`login`)
+    REFERENCES `rGztzErq-utilisateurs`(`login`)
+    ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE `rGztzErq-LignesCommande`(
-  `idCommande` INT(11) NOT NULL,
-  `idProduit` INT(11) NOT NULL,
-  PRIMARY KEY (`idCommande`, `idProduit`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
+                                        `idCommande` INT(11) NOT NULL ,
+                                        `idProduit` INT(11) NOT NULL ,
+                                        PRIMARY KEY (`idCommande`, `idProduit`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
 ALTER TABLE `rGztzErq-LignesCommande`
   ADD FOREIGN KEY (`idCommande`)
-  REFERENCES `rgztzerq-commandes`(`idCommande`)
-  ON DELETE CASCADE ON UPDATE CASCADE,
+    REFERENCES `rgztzerq-commandes`(`idCommande`)
+    ON DELETE CASCADE ON UPDATE CASCADE,
   ADD FOREIGN KEY (`idProduit`)
-  REFERENCES `rgztzerq-produits`(`idProduit`)
-  ON DELETE CASCADE ON UPDATE CASCADE;
+    REFERENCES `rgztzerq-produits`(`idProduit`)
+    ON DELETE CASCADE ON UPDATE CASCADE;
 
 INSERT INTO `rGztzErq-categories` (`idCategorie`, `nomCategorie`)
 VALUES ('1', 'Enceinte'), ('2', 'Pied'), ('3', 'Accessoire');
@@ -92,12 +92,12 @@ INSERT INTO `rGztzErq-Utilisateurs` (`login`, `nom`, `prenom`, `mdp`)
 VALUES ('ahamadad', 'Ahamada', 'Dayyaan', ''),
        ('gazaixp', 'Gazaix', 'Pierre', '');
 
-INSERT INTO `rgztzerq-commandes` (`idCommande`, `dateCommande`, `login`, `montantCommande`, `etatCommande`)
+INSERT INTO `rGztzErq-commandes` (`dateCommande`, `login`, `montantCommande`, `etatCommande`)
 VALUES
-        ('0', '2019-11-07', 'gazaixp', '15000', 'En cours'),
-        ('1', '2019-11-03', 'ahamadad', '8100', 'Passé CB');
+('2019-11-07', 'gazaixp', '15000', 'En cours'),
+('2019-11-03', 'ahamadad', '8100', 'Passé CB');
 
-INSERT INTO `rgztzerq-lignescommande` (`idCommande`, `idProduit`)
+INSERT INTO `rGztzErq-lignescommande` (`idCommande`, `idProduit`)
 VALUES
-       ('1', '19'), ('1', '16'),
-       ('1', '23'), ('0', '7');
+('1', '19'), ('1', '16'),
+('1', '23'), ('2', '7');

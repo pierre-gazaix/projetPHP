@@ -108,7 +108,7 @@ class ControllerProduit {
             $p->delete($_GET['idp']);
             $tab_p = ModelProduit::selectAll();
             $view = 'deleted';
-            $pagetitle = 'Catégorie supprimée';
+            $pagetitle = 'Produit supprimée';
         }
         require File::build_path(array('view', 'view.php'));
     }
