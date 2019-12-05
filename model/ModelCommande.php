@@ -31,13 +31,30 @@ class ModelCommande extends Model {
             $this->$nom_attribut = $valeur;
         return false;
     }
+    public static function selectMaxIdCommande(){
+            try {
+                $pdo = self::$pdo;
+                $nomTable = static::$nomTable;
+                $nomClasse = static::$nomClasse;
+                $clePrimaire = static::$primary;
 
-    public static function selectAll(){
-        return parent::selectAll();
-    }
-    public static function select($primary_value){
-        return parent::select($primary_value);
-    }
+                $sql = "SELECT max(idCommande) 
+                    FROM `{$nomTable}` ";
+                $requete = $pdo->prepare($sql);
+
+                $requete->execute();
+                $requete->setFetchMode(PDO::FETCH_ASSOC);
+                $objet = $requete->fetchAll();
+                if (isset($objet[0]))
+                    return $objet[0];
+                else
+                    return null;
+
+            } catch (PDOException $e) {
+                return false;
+            }
+        }
+
     public static function selectByLogin($login){
         try {
             $pdo = self::$pdo;
@@ -66,11 +83,6 @@ class ModelCommande extends Model {
     public static function insert($data){
         return parent::insert($data);
     }
-
-    public static function update($data,$primary){
-        return parent::update($data,$primary);
-    }
-
     public static function delete($primary){
         return parent::delete($primary);
     }

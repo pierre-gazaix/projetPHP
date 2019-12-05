@@ -1,102 +1,9 @@
 <?php
 require_once File::build_path(array('model', 'ModelCommande.php'));
+require_once File::build_path(array('model', 'ModelLigneCommande.php'));
 
 class ControllerCommande{
 
-    protected static $object = 'commande';
-
-    public static function readAll(){
-        $tab_c = ModelCommande::selectAll();
-        $controller = 'commande';
-        $view = 'list';
-        $pagetitle = 'Toutes les commandes';
-        require File::build_path(array('view', 'categorie', 'list.php'));
-    }
-
-    public static function create(){
-        $tab_c = ModelCategorie::selectAll();
-        $c = new ModelCommande();
-        $c->set('idCommande', '');
-        $c->set('dateCommande', '');
-        $c->set('login', '');
-        $c->set('montantCommande', '');
-        $c->set('etatCommande', '');
-        $controller = 'commande';
-        $view = 'update';
-        $pagetitle = 'Création Commande';
-        require File::build_path(array('view', 'view.php'));
-    }
-
-    public static function created()
-    {
-        $values = array(
-            "idCommande" => $_GET['idCommande'],
-            "dateCommande" => $_GET['dateCommande'],
-            "login" => $_GET['$login'],
-            "montantCommande" => $_GET['montantCommande'],
-            "etatCommande" => $_GET['etatCommande']);
-        $ok = ModelCommande::insert($values);
-        $tab_c = ModelCommande::selectAll();
-        $controller = 'commande';
-        if (!$ok) {
-            $view = 'error';
-            $pagetitle = 'ERREUR';
-        } else {
-            $view = 'created';
-            $pagetitle = 'Categorie Crée';
-        }
-        require File::build_path(array('view', 'view.php'));
-    }
-
-    public static function update(){
-        $c = ModelCategorie::select($_GET['cat']);
-        $controller = 'commande';
-        if ($c == null) {
-            $view = 'error';
-            $pagetitle = 'Erreur!';
-        } else {
-            $view = 'update';
-            $pagetitle = 'Modification de la voiture';
-        }
-        require File::build_path(array('view', 'view.php'));
-    }
-
-    public static function updated()
-    {
-        $values = array(
-            "idCommande" => $_GET['idCommande'],
-            "dateCommande" => $_GET['dateCommande'],
-            "login" => $_GET['$login'],
-            "montantCommande" => $_GET['montantCommande'],
-            "etatCommande" => $_GET['etatCommande']);
-        $ok = ModelCommande::update($values, $_GET['cat']);
-        $tab = ModelCommande::selectAll();
-        $controller = 'commande';
-        if (!$ok) {
-            $view = 'error';
-            $pagetitle = 'Erreur!';
-        } else {
-            $view = 'updated';
-            $pagetitle = 'Catégorie modifiée';
-        }
-        require File::build_path(array('view', 'view.php'));
-    }
-
-    public static function delete()
-    {
-        $c = ModelCommande::select($_GET['cat']);
-        $controller = 'commande';
-        if (is_null($c)) {
-            $view = 'error';
-            $pagetitle = 'Erreur!';
-        } else {
-            $c->delete($_GET['cat']);
-            $tab_c = ModelCommande::selectAll();
-            $view = 'deleted';
-            $pagetitle = 'Catégorie supprimée';
-        }
-        require File::build_path(array('view', 'view.php'));
-    }
     public static function buy (){
         if(isset($_SESSION['login']))
             $login = $_SESSION['login'];
@@ -108,10 +15,15 @@ class ControllerCommande{
             "montantCommande" => $_POST['mc'],
             "etatCommande" => 'En cours');
         $ok = ModelCommande::insert($values);
-        $qte =
-        $controller = 'commande';
-        $view = 'list';
-        $pagetitle = 'Votre commande';
+        $idCommande = ModelCommande::selectMaxIdCommande();
+        $panier = unserialize($_POST['p']);
+        foreach ($panier as $p => $qte){
+            $values=array(
+                "idCommande" =>$idCommande['max(idCommande)'],
+                "idProduit" => $p,
+                "quantite" => $qte);
+        ModelLigneCommande::insert($values);
+        }
         header('Location: ./index.php?controller=commande&action=read');
         exit();
     }
@@ -125,6 +37,19 @@ class ControllerCommande{
         $controller = 'commande';
         $view = 'list';
         $pagetitle = 'Votre commande';
+        require File::build_path(array('view', 'view.php'));
+    }
+    public static function show(){
+        $idc = ModelCommande::selectMaxIdCommande();
+        $tab_tab_commande = ModelLigneCommande::selectByIdCommande($idc['max(idCommande)']);
+        $controller = 'commande';
+        if(empty($tab_tab_commande)){
+            $view = 'error';
+            $pagetitle = 'Erreur!';
+        }else {
+            $view = 'detail';
+            $pagetitle = 'Détail';
+        }
         require File::build_path(array('view', 'view.php'));
     }
 }

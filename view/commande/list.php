@@ -17,7 +17,7 @@ foreach ($tab_c as $c){
     $idp_url = rawurlencode($c->get('idCommande'));
 ?>
     <tr>
-        <td><?php echo $idc_html?></td>
+        <td><a href=?controller=commande&action=show&idp=<?php echo $idp_url?>><?php echo $idc_html?></a></td>
         <td><?php echo $lg_html?></td>
         <td><?php echo $mc_html?></td>
         <td><?php echo $dtc_html?></td>

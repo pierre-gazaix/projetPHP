@@ -11,10 +11,10 @@ else{
     ."<hr>";
     foreach ($panier as $idP => $qte){
         $p = ModelProduit::select($idP);
-        $nomProduit = $p->get('nomProduit');
-        $description = $p->get('description');
-        $prix = $p->get('prix');
-        $totalProduit = $prix*$qte;
+        $nomProduit = htmlspecialchars($p->get('nomProduit'));
+        $description = htmlspecialchars($p->get('description'));
+        $prix = htmlspecialchars($p->get('prix'));
+        $totalProduit = htmlspecialchars($prix*$qte);
         $totalPanier +=$totalProduit;
         $idp_url = rawurlencode($p->get('idProduit'));
         if($p->get('quantite') == 0)
@@ -39,10 +39,10 @@ else{
     }?>
 <legend>Total<div style="text-align:right">
     <?php echo $totalPanier?>
-€</div>
+€</div
 </legend>
     <form action="?controller=commande&action=buy" method="post">
     <input type="hidden" name="mc" id="mc_id" value= <?php echo $totalPanier?>>
-    <input type="hidden" name="mc" id="mc_id" value= <?php echo $totalPanier?>>
+    <input type="hidden" name="p" id="p_id" value= <?php echo serialize($panier)?>>
         <input type="submit" value="Passer la commande" />
 <?php }

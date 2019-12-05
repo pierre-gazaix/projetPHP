@@ -34,12 +34,12 @@ if ($_GET['action'] == 'update') {
         </p>
         <p>
             <label for="p_id">Prix</label>
-            <input type="text" name="prix" id="p_id"
+            <input type="number" name="prix" id="p_id"
                    value="<?php echo htmlspecialchars($p->get('prix')); ?>"/>
         </p>
         <p>
             <label for="idP_id">Id Produit</label>
-            <input type="text" name="idp" id="idP_id"
+            <input type="number" name="idp" id="idP_id"
                    value="<?php echo htmlspecialchars($p->get('idProduit')); ?>"
                     <?php echo $champ;?>="true"/>
         </p>

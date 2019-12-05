@@ -48,6 +48,7 @@ ALTER TABLE `rGztzErq-Commandes`
 CREATE TABLE `rGztzErq-LignesCommande`(
                                         `idCommande` INT(11) NOT NULL ,
                                         `idProduit` INT(11) NOT NULL ,
+                                        `quantite` INT(11),
                                         PRIMARY KEY (`idCommande`, `idProduit`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
 ALTER TABLE `rGztzErq-LignesCommande`
   ADD FOREIGN KEY (`idCommande`)
