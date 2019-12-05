@@ -55,6 +55,7 @@ class ModelProduit extends Model{
     }
 
     public static function selectAllByIdCategorie($id){
+        try{
         $req_sql = "SELECT * 
                     FROM `rGztzErq-Produits` 
                     WHERE `idCategorie` =:sql_idCategorie";
@@ -69,6 +70,9 @@ class ModelProduit extends Model{
             return null;
         else
             return $tab;
+    } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        return false;
     }
-
 }

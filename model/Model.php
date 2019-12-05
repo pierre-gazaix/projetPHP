@@ -73,7 +73,6 @@ class Model{
             $requete = $pdo->prepare($sql);
             $valeur = array(
                 "sql_pk" => $primary_value);
-
             $requete->execute($valeur);
             $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
             $objet = $requete->fetchAll();
@@ -83,6 +82,7 @@ class Model{
                 return null;
 
         } catch (PDOException $e) {
+            echo $e->getMessage();
             return false;
         }
     }

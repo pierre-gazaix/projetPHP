@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="Style.css" />
+    <link rel="stylesheet" type="text/css" href="./view/Style.css" />
     <link rel="icon" type="image/png" href="./view/Images/JPEG/LogoOnglet.png">
     <title><?php echo $pagetitle; ?></title>
 
@@ -22,7 +22,7 @@
 
 <header class="Accueil_Holygrail-header">
 
-    <a href="./view/viewAccueil.php"><img src="./view/Images/JPEG/LogoG.png" alt="LogoDevialet"></a>
+    <a href="./index.php"><img src="./view/Images/JPEG/LogoG.png" alt="LogoDevialet"></a>
 
     <div id="MenuBurger">
 

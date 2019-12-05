@@ -83,7 +83,4 @@ class ModelCommande extends Model {
     public static function insert($data){
         return parent::insert($data);
     }
-    public static function delete($primary){
-        return parent::delete($primary);
-    }
 }

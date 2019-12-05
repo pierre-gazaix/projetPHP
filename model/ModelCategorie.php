@@ -23,28 +23,10 @@ class ModelCategorie extends Model {
         return false;
     }
 
-    public function set($nom_attribut, $valeur) {
-        if (property_exists($this, $nom_attribut))
-            $this->$nom_attribut = $valeur;
-        return false;
-    }
-
     public static function selectAll(){
         return parent::selectAll();
     }
     public static function select($primary_value){
         return parent::select($primary_value);
-    }
-
-    public static function insert($data){
-        return parent::insert($data);
-    }
-
-    public static function update($data,$primary){
-        return parent::update($data,$primary);
-    }
-
-    public static function delete($primary){
-        return parent::delete($primary);
     }
 }

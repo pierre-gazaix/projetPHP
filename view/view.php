@@ -33,18 +33,23 @@
             <li><a href="./view/FAQ.html">FAQ</a></li>
             <li id="panier"><a  href="?controller=Panier&action=read">PANIER</a></li>
             <li id="panier"><a  href="?controller=commande&action=read">VOS COMMANDES</a></li>
+            <li id="panier"><a  href="?controller=utilisateur&action=connect">SE CONNECTER</a></li>
         </ul>
     </div>
 
     <nav>
         <ul>
             <li id="Produit"><a href="./view/Produit.html">PRODUIT</a></li>
-            <li id="Equipe"><a href="./view/Equipe.html">EQUIPE</a></li>
             <li id="Contact"><a href="./view/Contact.html">CONTACT</a></li>
             </li>
             <li id="FAQ"><a href="./view/FAQ.html">FAQ</a></li>
             <li id="panier"><a  href="?controller=Panier&action=read">PANIER</a></li>
-            <li id="panier"><a  href="?controller=commande&action=read">VOS COMMANDES</a></li>
+            <li id="commande"><a  href="?controller=commande&action=read">VOS COMMANDES</a></li>
+            <?php if(!Session::est_connecte()){?>
+            <li id="connexion"><a  href="?controller=utilisateur&action=connect">CONNEXION</a></li>
+            <?php }else{?>
+            <li id="deconnexion"><a  href="?controller=utilisateur&action=deconnect">DECONNEXION</a></li
+                    <?php }?>
         </ul>
     </nav>
 
