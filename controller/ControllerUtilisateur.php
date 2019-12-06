@@ -27,39 +27,49 @@ class ControllerUtilisateur
         $ok = ModelUtilisateur::insert($values);
         $tab_u = ModelUtilisateur::selectAll();
         header('Location: ./index.php?controller=utilisateur&action=connect');
-        exit();;
+        exit();
 
     }
 
     public static function update (){
         $controller = 'utilisateur';
         $u = ModelUtilisateur::select($_GET['u']);
-        if (empty($u)) {
-            $view = 'error';
-            $pagetitle = 'Erreur!';
-        } else {
-            $view = 'update';
-            $pagetitle = 'Votre compte';
+        if(Session::is_user($u->get('login')) || Session::est_admin()){
+            if (empty($u)) {
+                $view = 'error';
+                $pagetitle = 'Erreur!';
+            } else {
+                $view = 'update';
+                $pagetitle = 'Votre compte';
+            }
+        }else{
+            $view = 'notUser';
+            $pagetitle ='Petit filou!';
         }
         require File::build_path(array('view', 'view.php'));
     }
     public static function updated (){
-        $values = array(
-            "idProduit" =>$_GET['idp'],
-            "nomProduit" =>$_GET['nom'],
-            "description" =>$_GET['desc'],
-            "couleur" =>$_GET['coul'],
-            "prix" => $_GET['prix'],
-            "idCategorie" => $_GET['idC']);
-        $ok = ModelProduit::update($values,$_GET['idp']);
-        $tab_p = ModelProduit::selectAll();
-        $controller = 'produit';
-        if(!$ok) {
-            $view = 'error';
-            $pagetitle = 'Erreur!';
+        $controller = 'utilisateur';
+        if(Session::is_user($_GET['login']) || Session::est_admin()) {
+
+            $mdp = Security::chiffrer($_GET['mdp']);
+            $values = array(
+                "login" => $_GET['login'],
+                "mdp" => $mdp,
+                "nom" => $_GET['nom'],
+                "prenom" => $_GET['prenom']);
+            $ok = ModelUtilisateur::update($values, $_GET['login']);
+
+            if (!$ok) {
+                $view = 'error';
+                $pagetitle = 'Erreur!';
+            } else {
+                header('Location: ./index.php?controller=utilisateur&action=update&u=' . $_SESSION['login']);
+                exit();
+            }
         }else{
-            $view = 'updated';
-            $pagetitle = 'Catégorie modifiée';
+            $view = 'notUser';
+            $pagetitle ='Petit filou!';
         }
         require File::build_path(array('view', 'view.php'));
     }
@@ -70,24 +80,26 @@ class ControllerUtilisateur
         require_once File::build_path(array('view', 'view.php'));
     }
     public static function connected(){
-        $mdp = Security::chiffrer($_POST['password']);
-        echo ModelUtilisateur::checkPassword($_POST['login'],$mdp);
-        var_dump(ModelUtilisateur::checkPassword($_POST['login'],Security::chiffrer($_POST['password'])));
+         $mdp = Security::chiffrer($_POST['password']);
         //On vérifie d'abord que ce n'est pas le compte admin
-        if ($_POST['login'] == "admin" && $_POST['password'] == "05bd6bbcad24f3d626dab924845c1fee9669fb9393eaa403e63012b65a8f33e5 ") {
-            $_SESSION['login'] = $_POST['login'];// Si c'est un admin on passe diirectement par là et on ne vérifie rien
+        if ($_POST['login'] == 'admin' && $mdp == '05bd6bbcad24f3d626dab924845c1fee9669fb9393eaa403e63012b65a8f33e5') {
+            $_SESSION['login'] = $_POST['login'];
             $_SESSION['statut'] = 3; //Mode admin, on a accès à tout
             $_SESSION['connnectedOnServ'] = true;
+            header('Location: ./index.php?controller=utilisateur&action=isConnected');
+            exit();
         }
-    else if(ModelUtilisateur::checkPassword($_POST['login'],Security::chiffrer($_POST['password']))){
-            $_SESSION['login'] = $_POST['login'];
-            $_SESSION['connnectedOnServ'] = true;
+        else if(ModelUtilisateur::checkPassword($_POST['login'],$mdp)){
+                $_SESSION['login'] = $_POST['login'];
+                $_SESSION['connnectedOnServ'] = true;
+            $_SESSION['statut'] = 2;
+            header('Location: ./index.php?controller=utilisateur&action=isConnected');
+            exit();
         }
-    else{
-        echo 'Utilisateur non reconnu';
-    }
-       header('Location: ./index.php?controller=utilisateur&action=isConnected');
-        exit();
+        else{
+            echo 'Utilisateur non reconnu';
+        }
+
     }
 
     public static function isConnected(){

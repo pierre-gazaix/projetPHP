@@ -27,6 +27,7 @@ class ControllerCommande{
         header('Location: ./index.php?controller=commande&action=read');
         exit();
     }
+
     public static function read(){
         if(isset($_SESSION['login']))
             $login = $_SESSION['login'];
@@ -39,6 +40,7 @@ class ControllerCommande{
         $pagetitle = 'Votre commande';
         require File::build_path(array('view', 'view.php'));
     }
+
     public static function show(){
         $idc = $_GET['idc'];
         $tabCommande = ModelLigneCommande::selectByIdCommande($idc);

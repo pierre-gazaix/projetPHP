@@ -1,4 +1,4 @@
-<legend>Votre commande n°<?php echo $tabCommande[0]['idCommande']?></legend>
+<h4>Votre commande n°<?php echo $tabCommande[0]['idCommande']?></h4>
 <table>
     <tr>
         <td>Nom categorie</td>

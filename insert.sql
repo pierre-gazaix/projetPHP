@@ -92,7 +92,9 @@
     INSERT INTO `rGztzErq-Utilisateurs` (`login`, `nom`, `prenom`, `mdp`)
     VALUES
         ('admin', 'admin', 'admin', '05bd6bbcad24f3d626dab924845c1fee9669fb9393eaa403e63012b65a8f33e5'),
-           ('invité', '', '', '');
+        ('DLH', 'DLH', 'Dayyaan', 'bbcf10f4616dc523ac9e26a3ac0601a6972d9588d876d19825eb001361cf42ce'),
+        ('gazaixp', 'Gazaix', 'Pierre', '65e9e50a4755d54c47a2ef5c1bc6322c8b1fbdfff98f5e38ff8f11b6b2ea992f'),
+        ('invité', '', '', '');
 
     INSERT INTO `rGztzErq-LignesCommande` (`idCommande`, `idProduit`)
     VALUES

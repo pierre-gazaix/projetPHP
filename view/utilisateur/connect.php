@@ -1,4 +1,4 @@
-<?php //Session::destroySession()?>
+
 <h1>Bienvenue sur Devialet</h1>
 <h4>Pas encore de compte ? <a href="./index.php?controller=utilisateur&action=create">S'inscrire!</a></h4>
 

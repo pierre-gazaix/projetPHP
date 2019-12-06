@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="fr">
 
 <head>
 
@@ -31,9 +31,9 @@
             <li><a href="./view/Contact.html">CONTACT</a></li>
             <li><a href="./view/Rejoindre.html">NOUS REJOINDRE</a></li>
             <li><a href="./view/FAQ.html">FAQ</a></li>
-            <li id="panier"><a  href="?controller=Panier&action=read">PANIER</a></li>
-            <li id="panier"><a  href="?controller=commande&action=read">VOS COMMANDES</a></li>
-            <li id="panier"><a  href="?controller=utilisateur&action=connect">SE CONNECTER</a></li>
+            <li><a  href="?controller=Panier&action=read">PANIER</a></li>
+            <li><a  href="?controller=commande&action=read">VOS COMMANDES</a></li>
+            <li><a  href="?controller=utilisateur&action=connect">SE CONNECTER</a></li>
         </ul>
     </div>
 
@@ -47,7 +47,7 @@
             <?php if(!Session::est_connecte()){?>
             <li id="connexion"><a  href="?controller=utilisateur&action=connect">CONNEXION</a></li>
             <?php }else{?>
-            <li id="deconnexion"><a  href="?controller=utilisateur&action=update&u=<?php echo $_SESSION['login']?>">MON COMPTE</a></li
+            <li id="deconnexion"><a  href="?controller=utilisateur&action=update&u=<?php echo $_SESSION['login']?>">MON COMPTE</a></li>
                     <?php }?>
         </ul>
     </nav>

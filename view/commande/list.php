@@ -1,4 +1,4 @@
-      <legend>Commandes passées</legend>
+      <h4>Commandes passées</h4>
 <table>
     <tr>
         <td>idCommande</td>
@@ -17,7 +17,7 @@ foreach ($tab_c as $c){
     $idc_url = rawurlencode($c->get('idCommande'));
 ?>
     <tr>
-        <td><a href=?controller=commande&action=show&idc=<?php echo $idc_url?>><?php echo $idc_html?></a></td>
+        <td><a href="?controller=commande&action=show&idc=<?php echo $idc_url?>"><?php echo $idc_html?></a></td>
         <td><?php echo $lg_html?></td>
         <td><?php echo $mc_html?></td>
         <td><?php echo $dtc_html?></td>
