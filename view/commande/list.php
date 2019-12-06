@@ -14,10 +14,10 @@ foreach ($tab_c as $c){
     $lg_html = htmlspecialchars($c->get('login'));
     $mc_html = htmlspecialchars($c->get('montantCommande'));
     $ec_html = htmlspecialchars($c->get('etatCommande'));
-    $idp_url = rawurlencode($c->get('idCommande'));
+    $idc_url = rawurlencode($c->get('idCommande'));
 ?>
     <tr>
-        <td><a href=?controller=commande&action=show&idp=<?php echo $idp_url?>><?php echo $idc_html?></a></td>
+        <td><a href=?controller=commande&action=show&idc=<?php echo $idc_url?>><?php echo $idc_html?></a></td>
         <td><?php echo $lg_html?></td>
         <td><?php echo $mc_html?></td>
         <td><?php echo $dtc_html?></td>

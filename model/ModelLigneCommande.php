@@ -32,14 +32,12 @@ class ModelLigneCommande extends Model {
 
     public static function selectByIdCommande($idC){
         try {
-            $pdo = self::$pdo;
-            $nomClasse = static::$nomClasse;
-
+            $pdo = Model::$pdo;
             $sql = "SELECT lg.idCommande,nomCategorie,nomProduit,couleur,prix,lg.quantite
-                    FROM `rgztzerq-produits` p
-                    INNER JOIN `rgztzerq-categories` cat
+                    FROM `rGztzErq-Produits` p
+                    INNER JOIN `rGztzErq-Categories` cat
                     ON cat.idCategorie = p.idCategorie
-                    INNER JOIN `rgztzerq-lignescommande` lg
+                    INNER JOIN `rGztzErq-LignesCommande` lg
                     ON lg.idProduit = p.idProduit
                     WHERE lg.idCommande =:sql_idc";
             $requete = $pdo->prepare($sql);
@@ -54,6 +52,7 @@ class ModelLigneCommande extends Model {
             else
                 return null;
         } catch (PDOException $e) {
+            echo $e->getMessage();
             return false;
         }
     }

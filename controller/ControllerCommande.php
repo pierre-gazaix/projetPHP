@@ -40,10 +40,10 @@ class ControllerCommande{
         require File::build_path(array('view', 'view.php'));
     }
     public static function show(){
-        $idc = ModelCommande::selectMaxIdCommande();
-        $tab_tab_commande = ModelLigneCommande::selectByIdCommande($idc['max(idCommande)']);
+        $idc = $_GET['idc'];
+        $tabCommande = ModelLigneCommande::selectByIdCommande($idc);
         $controller = 'commande';
-        if(empty($tab_tab_commande)){
+        if(empty($tabCommande)){
             $view = 'error';
             $pagetitle = 'Erreur!';
         }else {

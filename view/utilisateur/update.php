@@ -3,14 +3,17 @@ $controller = 'utilisateur';
 if ($_GET['action'] == 'update') {
     $champ = 'readonly';
     $action = 'updated';
+    $legend = 'Modification du compte';
 }else {
     $champ = 'required';
     $action = 'created';
+    $legend = 'Inscription';
 }
 ?>
+<a  href="?controller=utilisateur&action=deconnect">Se déconnecter ?</a>
 <form method="get" action="">
     <fieldset>
-        <legend>Inscription</legend>
+        <legend><?php echo $legend ?></legend>
         <p>
             <label for="nom_id">Nom</label>
             <input type="text" name="nom" id="nom_id"

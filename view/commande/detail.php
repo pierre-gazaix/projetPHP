@@ -1,4 +1,4 @@
-<legend>Votre commande n°<?php echo $tab_tab_commande[0]['idCommande']?></legend>
+<legend>Votre commande n°<?php echo $tabCommande[0]['idCommande']?></legend>
 <table>
     <tr>
         <td>Nom categorie</td>
@@ -8,12 +8,12 @@
         <td>Quantité</td>
     </tr>
     <?php
-    foreach ($tab_tab_commande as $tab_commande) {
-            $nomc_html = htmlspecialchars($tab_commande['nomCategorie']);
-            $nomp_html = htmlspecialchars($tab_commande['nomProduit']);
-            $coul_html = htmlspecialchars($tab_commande['couleur']);
-            $p_html = htmlspecialchars($tab_commande['prix']);
-            $qte_html = htmlspecialchars($tab_commande['quantite']);
+    foreach ($tabCommande as $commande) {
+            $nomc_html = htmlspecialchars($commande['nomCategorie']);
+            $nomp_html = htmlspecialchars($commande['nomProduit']);
+            $coul_html = htmlspecialchars($commande['couleur']);
+            $p_html = htmlspecialchars($commande['prix']);
+            $qte_html = htmlspecialchars($commande['quantite']);
             ?>
             <tr>
                 <td><?php echo $nomc_html ?></td>

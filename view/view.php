@@ -39,16 +39,15 @@
 
     <nav>
         <ul>
+            <li><a href="./index.php?action=accueil">ACCUEIL</a></li>
             <li id="Produit"><a href="./view/Produit.html">PRODUIT</a></li>
-            <li id="Contact"><a href="./view/Contact.html">CONTACT</a></li>
-            </li>
             <li id="FAQ"><a href="./view/FAQ.html">FAQ</a></li>
             <li id="panier"><a  href="?controller=Panier&action=read">PANIER</a></li>
-            <li id="commande"><a  href="?controller=commande&action=read">VOS COMMANDES</a></li>
+            <li id="commande"><a  href="?controller=commande&action=read">COMMANDES</a></li>
             <?php if(!Session::est_connecte()){?>
             <li id="connexion"><a  href="?controller=utilisateur&action=connect">CONNEXION</a></li>
             <?php }else{?>
-            <li id="deconnexion"><a  href="?controller=utilisateur&action=deconnect">DECONNEXION</a></li
+            <li id="deconnexion"><a  href="?controller=utilisateur&action=update&u=<?php echo $_SESSION['login']?>">MON COMPTE</a></li
                     <?php }?>
         </ul>
     </nav>

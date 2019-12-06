@@ -30,6 +30,39 @@ class ControllerUtilisateur
         exit();;
 
     }
+
+    public static function update (){
+        $controller = 'utilisateur';
+        $u = ModelUtilisateur::select($_GET['u']);
+        if (empty($u)) {
+            $view = 'error';
+            $pagetitle = 'Erreur!';
+        } else {
+            $view = 'update';
+            $pagetitle = 'Votre compte';
+        }
+        require File::build_path(array('view', 'view.php'));
+    }
+    public static function updated (){
+        $values = array(
+            "idProduit" =>$_GET['idp'],
+            "nomProduit" =>$_GET['nom'],
+            "description" =>$_GET['desc'],
+            "couleur" =>$_GET['coul'],
+            "prix" => $_GET['prix'],
+            "idCategorie" => $_GET['idC']);
+        $ok = ModelProduit::update($values,$_GET['idp']);
+        $tab_p = ModelProduit::selectAll();
+        $controller = 'produit';
+        if(!$ok) {
+            $view = 'error';
+            $pagetitle = 'Erreur!';
+        }else{
+            $view = 'updated';
+            $pagetitle = 'Catégorie modifiée';
+        }
+        require File::build_path(array('view', 'view.php'));
+    }
     public static function connect() {
         $controller='utilisateur';
         $view='connect';
@@ -41,7 +74,7 @@ class ControllerUtilisateur
         echo ModelUtilisateur::checkPassword($_POST['login'],$mdp);
         var_dump(ModelUtilisateur::checkPassword($_POST['login'],Security::chiffrer($_POST['password'])));
         //On vérifie d'abord que ce n'est pas le compte admin
-        if ($_POST['login'] == "admin" && $_POST['password'] == "dayyaan") {
+        if ($_POST['login'] == "admin" && $_POST['password'] == "05bd6bbcad24f3d626dab924845c1fee9669fb9393eaa403e63012b65a8f33e5 ") {
             $_SESSION['login'] = $_POST['login'];// Si c'est un admin on passe diirectement par là et on ne vérifie rien
             $_SESSION['statut'] = 3; //Mode admin, on a accès à tout
             $_SESSION['connnectedOnServ'] = true;

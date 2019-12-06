@@ -1,6 +1,10 @@
 <?php
 class Session
 {
+
+    public static function is_user($login) {
+        return (!empty($_SESSION['login']) && ($_SESSION['login'] == $login));
+    }
     public static function destroySession(){
         session_unset();     // unset $_SESSION variable for the run-time
         session_destroy();   // destroy session data in storage
