@@ -50,7 +50,6 @@ class Model{
             $requete->execute($valeur);
             $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
             $objet = $requete->fetchAll();
-            var_dump($objet);
             if (isset($objet[0]))
                 return $objet[0];
             else
@@ -116,7 +115,6 @@ class Model{
             $sql = "UPDATE `{$nomTable}` 
                     SET ".implode(', ', $setColumn)."
                     WHERE `{$clePrimaire}`=:sql_pk";
-            var_dump($sql);
             $requete = $pdo->prepare($sql);
             $valeur = array(
                 "sql_pk" => $primary);

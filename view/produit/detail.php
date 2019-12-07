@@ -5,24 +5,26 @@ $nomp_html = htmlspecialchars($p->get('nomProduit'));
 $desc_html = htmlspecialchars($p->get('description'));
 $coul_html = htmlspecialchars($p->get('couleur'));
 $p_html = htmlspecialchars($p->get('prix'));
-$idc_html = htmlspecialchars($p->get('idCategorie'));
+$nomc_html = htmlspecialchars($p->getNomCategorie($p->get('idProduit')));
 echo""
     ."<p>"
-    ."".($idp_html). ": ".$nomp_html
-    ."<br>"
+    ."<h4>".$nomp_html."</h4>"
+    ."<p>"
     ."Descprition: ".$desc_html
-    ."<br>"
+    ."</p>"
     ."Couleur : " .$coul_html
-    ."<br>"
+    ."<p>"
     ."Prix: ".$p_html
-    ."<br>"
-    ."idCategorie: ".$idc_html
-    ."<br>"
-    ." <div class=\"boutonPostuler\">"
-    ."<a href = \"?action=update&controller=produit&idp=".$idp_url
-    ."\"> Modifier</a>"
-    ."<a href = \"?action=delete&controller=produit&idp=". $idp_url
-    ."\"> Supprimer</a>"
-    ."<a href=?action=readAll> Retour </a>"
+    ."</p>"
+    ."Nom categorie: ".$nomc_html
+    ." <div class=\"boutonPostuler\">";
+
+    if(Session::est_admin()) {
+        echo "<a href = \"?action=update&controller=produit&idp=" . $idp_url
+        . "\"> Modifier</a>"
+        . "<a href = \"?action=delete&controller=produit&idp=" . $idp_url
+        . "\"> Supprimer</a>";
+        ;}
+    echo"<a href=?action=readAll> Retour </a>"
     ."</div>"
     ."</p>";

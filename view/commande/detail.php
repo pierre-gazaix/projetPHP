@@ -26,4 +26,4 @@
         }
     ?>
 </table>
-<a href=?controller=commande&action=read>Revenir aux commandes <a/>
+<a href="?controller=commande&action=read">Revenir aux commandes </a>

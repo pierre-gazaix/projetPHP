@@ -95,8 +95,3 @@
         ('DLH', 'DLH', 'Dayyaan', 'bbcf10f4616dc523ac9e26a3ac0601a6972d9588d876d19825eb001361cf42ce'),
         ('gazaixp', 'Gazaix', 'Pierre', '65e9e50a4755d54c47a2ef5c1bc6322c8b1fbdfff98f5e38ff8f11b6b2ea992f'),
         ('invité', '', '', '');
-
-    INSERT INTO `rGztzErq-LignesCommande` (`idCommande`, `idProduit`)
-    VALUES
-    ('1', '19'), ('1', '16'),
-    ('1', '23'), ('2', '7');

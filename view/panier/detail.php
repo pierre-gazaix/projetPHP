@@ -3,11 +3,11 @@ if (!isset ($_COOKIE['panier']) || empty($panier))
     echo "Votre panier est vide!";
 else{
     ?>
-    <a href=?action=deleteAll&controller=panier>Vider panier</a>
+    <a href="?action=deleteAll&controller=panier">Vider panier</a>
     <?php
     $totalProduit = 0;
     $totalPanier = 0;
-    echo "<legend>Votre panier</legend>"
+    echo "<h2>Votre panier</h2>"
     ."<hr>";
     foreach ($panier as $idP => $qte){
         $p = ModelProduit::select($idP);
@@ -28,21 +28,20 @@ else{
             <li><p><?php echo $enStock ?></p></li>
             <li><?php echo $prix?>€</li>
             <li><p>Quantité: <?php echo $qte?></p></li>
-            <lib>Total<div style="text-align:right"></lib>
-                    <?php echo $totalProduit?>
-                €</div>
-            <a href=?action=delete&controller=panier&idp=<?php echo $idp_url?>>Supprimer du panier</a>
+            <li><h4>Total <?php echo $totalProduit?>€</h4></li>
+            <li><a href="?action=delete&controller=panier&idp=<?php echo $idp_url?>">Supprimer du panier</a></li>
         </ul>
         <hr>
 
         <?php
     }?>
-<legend>Total<div style="text-align:right">
+<h3>Total
     <?php echo $totalPanier?>
-€</div
-</legend>
-    <form action="?controller=commande&action=buy" method="post">
+€</h3>
+
+    <form method="post" action="?controller=commande&action=buy" >
     <input type="hidden" name="mc" id="mc_id" value= <?php echo $totalPanier?>>
     <input type="hidden" name="p" id="p_id" value= <?php echo serialize($panier)?>>
         <input type="submit" value="Passer la commande" />
+    </form>
 <?php }

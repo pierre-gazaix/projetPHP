@@ -79,8 +79,9 @@ class ControllerUtilisateur
         $pagetitle='Bienvenue';
         require_once File::build_path(array('view', 'view.php'));
     }
-    public static function connected(){
-         $mdp = Security::chiffrer($_POST['password']);
+    public static function connected()
+    {
+        $mdp = Security::chiffrer($_POST['password']);
         //On vérifie d'abord que ce n'est pas le compte admin
         if ($_POST['login'] == 'admin' && $mdp == '05bd6bbcad24f3d626dab924845c1fee9669fb9393eaa403e63012b65a8f33e5') {
             $_SESSION['login'] = $_POST['login'];
@@ -88,24 +89,41 @@ class ControllerUtilisateur
             $_SESSION['connnectedOnServ'] = true;
             header('Location: ./index.php?controller=utilisateur&action=isConnected');
             exit();
-        }
-        else if(ModelUtilisateur::checkPassword($_POST['login'],$mdp)){
+        } else {
+            $u = ModelUtilisateur::checkPassword($_POST['login'], $mdp);
+            if ($u=='userWrong') {
+                echo 'petit pd';
+                header('Location: ./index.php?controller=utilisateur&action=userWrong');
+                exit();
+            } else if ($u == 'mdpWrong') {
+                header('Location: ./index.php?controller=utilisateur&action=mdpWrong');
+                exit();
+            } else if ($u=='bg') {
                 $_SESSION['login'] = $_POST['login'];
                 $_SESSION['connnectedOnServ'] = true;
-            $_SESSION['statut'] = 2;
-            header('Location: ./index.php?controller=utilisateur&action=isConnected');
-            exit();
+                $_SESSION['statut'] = 2;
+                header('Location: ./index.php?controller=utilisateur&action=isConnected');
+                exit();
+            }
         }
-        else{
-            echo 'Utilisateur non reconnu';
-        }
-
     }
 
     public static function isConnected(){
         $controller='utilisateur';
         $view='bienvenue';
         $pagetitle = 'Bonjour';
+        require_once File::build_path(array('view', 'view.php'));
+    }
+    public static function userWrong(){
+        $controller = 'utilisateur';
+        $view = 'userWrong';
+        $pagetitle = 'Utilisateur non reconnu';
+        require_once File::build_path(array('view', 'view.php'));
+    }
+    public static function mdpWrong(){
+        $controller = 'utilisateur';
+        $view = 'mdpWrong';
+        $pagetitle = 'Mauvais mot de passe';
         require_once File::build_path(array('view', 'view.php'));
     }
 

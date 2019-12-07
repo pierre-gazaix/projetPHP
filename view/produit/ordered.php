@@ -2,7 +2,6 @@
 echo '<p>Produits triés!</p>';
 echo '<a href="?controller=produit&action=create">Créer un produit </a> </p>';
 foreach ($tab_p as $p){
-    var_dump($p);
     $idp_html = htmlspecialchars($p->get('idProduit'));
     $nom_html = htmlspecialchars($p->get('nomProduit'));
     $idp_url = rawurlencode($p->get('idProduit'));
