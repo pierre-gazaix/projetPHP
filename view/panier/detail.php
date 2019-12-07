@@ -17,10 +17,6 @@ else{
         $totalProduit = htmlspecialchars($prix*$qte);
         $totalPanier +=$totalProduit;
         $idp_url = rawurlencode($p->get('idProduit'));
-        if($p->get('quantite') == 0)
-            $enStock = 'Rupture de stock';
-        else
-            $enStock = 'En stock';
         ?>
         <ul>
             <li><h3><?php echo $nomProduit?></h3></li>
