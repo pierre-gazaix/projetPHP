@@ -30,6 +30,11 @@ if ($_GET['action'] == 'update') {
                    value="<?php echo htmlspecialchars($u->get('login')); ?>"
             <?php echo $champ;?>/>
         </p>
+        <label>Mail</label>
+        <input type="email" name="mail" id="mail_id"
+               value="<?php echo htmlspecialchars($u->get('mail')); ?>"
+            <?php echo $champ;?>/>
+        </p>
         <p>
             <label>Mot de passe</label>
             <input type="password" name="mdp" id="mdp_id">

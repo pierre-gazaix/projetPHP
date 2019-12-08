@@ -13,6 +13,8 @@
         private $login;
         private $nom;
         private $prenom;
+        private $mail;
+        private $nonce;
 
         public function get($nom_attribut)
         {
@@ -28,13 +30,14 @@
             return false;
         }
 
-        public function __construct($login = NULL, $mdp = NULL, $nom = NULL, $prenom = NULL)
+        public function __construct($login = NULL, $mdp = NULL, $nom = NULL, $prenom = NULL, $mail=null)
         {
-            if (!is_null($login) && !is_null($mdp) && !is_null($nom) && !is_null($prenom)) {
+            if (!is_null($login) && !is_null($mdp) && !is_null($nom) && !is_null($prenom)&& !is_null($mail)) {
                 $this->login = $login;
                 $this->mdp = $mdp;
                 $this->nom = $nom;
                 $this->prenom = $prenom;
+                $this->$mail = $mail;
             }
         }
         public static function select($primary_value){
@@ -85,6 +88,33 @@
                         return $test;
                     }
                 }
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
+        }
+        public static function selectNonce($login,$nonce){
+            try {
+                $pdo = self::$pdo;
+                $nomTable = self::$nomTable;
+                $nomClasse = self::$nomClasse;
+
+                $sql = "SELECT * 
+                    FROM `{$nomTable}` 
+                    WHERE  `login`=:sql_pk
+                    AND `nonce`=:sql_n";
+                $requete = $pdo->prepare($sql);
+                $valeur = array(
+                    "sql_pk" => $login,
+                    "sql_n" => $nonce);
+                $requete->execute($valeur);
+                $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
+                $objet = $requete->fetchAll();
+                if (isset($objet[0]))
+                    return true;
+                else
+                    return false;
+
             } catch (PDOException $e) {
                 echo $e->getMessage();
                 return false;

@@ -11,6 +11,7 @@ class ControllerUtilisateur
         $u->set('mdp','');
         $u->set('nom','');
         $u->set('prenom','');
+        $u->set('mail','');
         $controller = 'utilisateur';
         $view = 'update';
         $pagetitle = 'Création de l\'utilisateur';
@@ -19,16 +20,29 @@ class ControllerUtilisateur
     }
     public static function created(){
         $mdp = Security::chiffrer($_GET['mdp']);
+        $mail = filter_var($_GET['mail'], FILTER_VALIDATE_EMAIL);
+        if ($mail){
         $values = array(
             "login" => $_GET['login'],
             "mdp" => $mdp,
             "nom" => $_GET['nom'],
-            "prenom" => $_GET['prenom']);
+            "prenom" => $_GET['prenom'],
+            "mail" => $_GET['mail']);
         $ok = ModelUtilisateur::insert($values);
         $tab_u = ModelUtilisateur::selectAll();
         header('Location: ./index.php?controller=utilisateur&action=connect');
         exit();
+        }else {
+            header('Location: ./index.php?controller=utilisateur&action=mailWrong');
+            exit();
+        }
+    }
 
+    public static function mailWrong() {
+        $controller='utilisateur';
+        $view='mailWrong';
+        $pagetitle='Adresse non valide';
+        require_once File::build_path(array('view', 'view.php'));
     }
 
     public static function update (){
@@ -57,7 +71,8 @@ class ControllerUtilisateur
                 "login" => $_GET['login'],
                 "mdp" => $mdp,
                 "nom" => $_GET['nom'],
-                "prenom" => $_GET['prenom']);
+                "prenom" => $_GET['prenom'],
+                "mail" => $_GET['mail']);
             $ok = ModelUtilisateur::update($values, $_GET['login']);
 
             if (!$ok) {
@@ -74,13 +89,34 @@ class ControllerUtilisateur
         require File::build_path(array('view', 'view.php'));
     }
     public static function connect() {
+        var_dump(ModelUtilisateur::selectNonce('DLzH',''));
         $controller='utilisateur';
         $view='connect';
         $pagetitle='Bienvenue';
         require_once File::build_path(array('view', 'view.php'));
     }
-    public static function connected()
-    {
+    public static function validate(){
+        $login = $_GET['login'];
+        $nonce = $_GET['nonce'];
+        if (ModelUtilisateur::select($login)){
+            if(ModelUtilisateur::selectNonce($login,$nonce)){
+                $values = array(
+                    "nonce" => '');
+                $ok = ModelUtilisateur::update($values, $login);
+            }else{
+                $controller = 'utilisateur';
+                $view = 'nonceWrong';
+                $pagetitle = 'Validation incorrecte';
+                require_once File::build_path(array('view', 'view.php'));
+            }
+        }else{
+            $controller = 'utilisateur';
+            $view = 'userWrong';
+            $pagetitle = 'Utilisateur non reconnu';
+            require_once File::build_path(array('view', 'view.php'));
+        }
+    }
+    public static function connected(){
         $mdp = Security::chiffrer($_POST['password']);
         //On vérifie d'abord que ce n'est pas le compte admin
         if ($_POST['login'] == 'admin' && $mdp == '05bd6bbcad24f3d626dab924845c1fee9669fb9393eaa403e63012b65a8f33e5') {
@@ -89,7 +125,7 @@ class ControllerUtilisateur
             $_SESSION['connnectedOnServ'] = true;
             header('Location: ./index.php?controller=utilisateur&action=isConnected');
             exit();
-        } else {
+        } else{
             $u = ModelUtilisateur::checkPassword($_POST['login'], $mdp);
             if ($u=='userWrong') {
                 echo 'petit pd';
@@ -98,7 +134,7 @@ class ControllerUtilisateur
             } else if ($u == 'mdpWrong') {
                 header('Location: ./index.php?controller=utilisateur&action=mdpWrong');
                 exit();
-            } else if ($u=='bg') {
+            } else if ($u=='bg' && $u->get('nonce')==null) {
                 $_SESSION['login'] = $_POST['login'];
                 $_SESSION['connnectedOnServ'] = true;
                 $_SESSION['statut'] = 2;
@@ -133,11 +169,11 @@ class ControllerUtilisateur
     public static function deconnect () {
         if (Session::est_connecte()) {
             Session::destroySession();
-            header('Location: ./index.php?controller=utilisateur&action=connect');
+            header('Location: ./index.php');
             exit();
         } else { // On lui dit qu'il n'est pas connecté et lui propose de le faire
             $controller='utlisateur';
-            $view = 'error';
+            $view = 'connect';
             $pagetitle = 'Vous n\'êtes pas connecté';
         }
         require_once File::build_path(array('view', 'view.php'));

@@ -29,6 +29,8 @@
                                            `login` VARCHAR(25) NOT NULL ,
                                            `nom` VARCHAR(20) NOT NULL ,
                                            `prenom` VARCHAR(20) NOT NULL ,
+                                           `mail` VARCHAR(256) NOT NULL,
+                                           `nonce` VARCHAR (32) NOT NULL,
                                            `mdp` VARCHAR(64) NOT NULL ,
                                            PRIMARY KEY (`login`)) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 
@@ -89,9 +91,9 @@
            ('25', 'Expert 440 pro dual', 'Même principe que le Expert 210 pro dual, en plus cher et plus performant.', 'Gris', '14900', '15', '3'),
            ('26', 'Expert 1000 pro dual', 'Même principe que le Expert 440 pro dual, en plus cher et plus performant.', 'Gris', '27900', '10', '3');
 
-    INSERT INTO `rGztzErq-Utilisateurs` (`login`, `nom`, `prenom`, `mdp`)
+    INSERT INTO `rGztzErq-Utilisateurs` (`login`, `nom`, `prenom`,`mail`,`nonce`, `mdp`)
     VALUES
-        ('admin', 'admin', 'admin', '05bd6bbcad24f3d626dab924845c1fee9669fb9393eaa403e63012b65a8f33e5'),
-        ('DLH', 'DLH', 'Dayyaan', 'bbcf10f4616dc523ac9e26a3ac0601a6972d9588d876d19825eb001361cf42ce'),
-        ('gazaixp', 'Gazaix', 'Pierre', '65e9e50a4755d54c47a2ef5c1bc6322c8b1fbdfff98f5e38ff8f11b6b2ea992f'),
-        ('invité', '', '', '');
+        ('admin', 'admin', 'admin','', '','05bd6bbcad24f3d626dab924845c1fee9669fb9393eaa403e63012b65a8f33e5'),
+        ('DLH', 'DLH', 'Dayyaan','', '', 'bbcf10f4616dc523ac9e26a3ac0601a6972d9588d876d19825eb001361cf42ce'),
+        ('gazaixp', 'Gazaix', 'Pierre','', '', '65e9e50a4755d54c47a2ef5c1bc6322c8b1fbdfff98f5e38ff8f11b6b2ea992f'),
+        ('invité', '', '','', '', '');
