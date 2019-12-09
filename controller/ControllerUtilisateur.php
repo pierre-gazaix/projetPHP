@@ -134,7 +134,7 @@ class ControllerUtilisateur
             } else if ($u == 'mdpWrong') {
                 header('Location: ./index.php?controller=utilisateur&action=mdpWrong');
                 exit();
-            } else if ($u=='bg' && $u->get('nonce')==null) {
+            } else if ($u=='bg' /*&& $u->get('nonce')==null*/) {
                 $_SESSION['login'] = $_POST['login'];
                 $_SESSION['connnectedOnServ'] = true;
                 $_SESSION['statut'] = 2;

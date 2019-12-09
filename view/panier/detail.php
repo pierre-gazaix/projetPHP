@@ -21,7 +21,6 @@ else{
         <ul>
             <li><h3><?php echo $nomProduit?></h3></li>
             <li><?php echo $description?></li>
-            <li><p><?php echo $enStock ?></p></li>
             <li><?php echo $prix?>€</li>
             <li><p>Quantité: <?php echo $qte?></p></li>
             <li><h4>Total <?php echo $totalProduit?>€</h4></li>
