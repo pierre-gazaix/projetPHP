@@ -111,9 +111,9 @@
                 $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
                 $objet = $requete->fetchAll();
                 if (isset($objet[0]))
-                    return true;
+                    return $objet[0]->get('nonce');
                 else
-                    return false;
+                    return NULL;
 
             } catch (PDOException $e) {
                 echo $e->getMessage();

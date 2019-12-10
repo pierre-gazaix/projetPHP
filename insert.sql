@@ -30,7 +30,7 @@
                                            `nom` VARCHAR(20) NOT NULL ,
                                            `prenom` VARCHAR(20) NOT NULL ,
                                            `mail` VARCHAR(256) NOT NULL,
-                                           `nonce` VARCHAR (32) NOT NULL,
+                                           `nonce` VARCHAR (32),
                                            `mdp` VARCHAR(64) NOT NULL ,
                                            PRIMARY KEY (`login`)) ENGINE = InnoDB DEFAULT CHARSET=utf8;
 

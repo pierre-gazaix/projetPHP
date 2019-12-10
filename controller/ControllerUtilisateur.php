@@ -21,15 +21,28 @@ class ControllerUtilisateur
     public static function created(){
         $mdp = Security::chiffrer($_GET['mdp']);
         $mail = filter_var($_GET['mail'], FILTER_VALIDATE_EMAIL);
+        $login = $_GET['login'];
+        $nonce = Security::generateRandomHex();
         if ($mail){
         $values = array(
-            "login" => $_GET['login'],
+            "login" => $login,
             "mdp" => $mdp,
             "nom" => $_GET['nom'],
             "prenom" => $_GET['prenom'],
-            "mail" => $_GET['mail']);
+            "nonce" => Security::generateRandomHex(),
+            "mail" => $mail);
         $ok = ModelUtilisateur::insert($values);
         $tab_u = ModelUtilisateur::selectAll();
+        $contenuMail = '<html>
+                        <head> <meta charset="utf-8" /> <title>Devialet</title> </head>
+                        <body>
+                        <p>Veuillez valider votre inscirption en cliquant sur ce lien :</p>
+                        <a href="http://webinfo.iutmontp.univ-montp2.fr/~ahamadad/Devialet/index.php?controller=utilisateur&action=validate
+                            &login=".$login."&nonce=".$nonce.">Validation</a>
+                        </body>
+                        </html>';
+            '</p>';
+        mail($mail,'Validation inscription Devialet',$contenuMail);
         header('Location: ./index.php?controller=utilisateur&action=connect');
         exit();
         }else {
@@ -37,6 +50,8 @@ class ControllerUtilisateur
             exit();
         }
     }
+
+
 
     public static function mailWrong() {
         $controller='utilisateur';
@@ -89,7 +104,11 @@ class ControllerUtilisateur
         require File::build_path(array('view', 'view.php'));
     }
     public static function connect() {
-        var_dump(ModelUtilisateur::selectNonce('DLzH',''));
+        $login = 'DLH';
+        $nonce = Security::generateRandomHex();
+        echo '<a href="http://webinfo.iutmontp.univ-montp2.fr/~ahamadad/Devialet/index.php?controller=utilisateur&action=validate
+                            &login=".$login."&nonce=".$nonce.">Validation</a>';
+        var_dump(ModelUtilisateur::selectNonce('DLH','dada'));
         $controller='utilisateur';
         $view='connect';
         $pagetitle='Bienvenue';
@@ -128,13 +147,12 @@ class ControllerUtilisateur
         } else{
             $u = ModelUtilisateur::checkPassword($_POST['login'], $mdp);
             if ($u=='userWrong') {
-                echo 'petit pd';
                 header('Location: ./index.php?controller=utilisateur&action=userWrong');
                 exit();
             } else if ($u == 'mdpWrong') {
                 header('Location: ./index.php?controller=utilisateur&action=mdpWrong');
                 exit();
-            } else if ($u=='bg' /*&& $u->get('nonce')==null*/) {
+            } else if ($u=='bg' && $u->get('nonce')==null) {
                 $_SESSION['login'] = $_POST['login'];
                 $_SESSION['connnectedOnServ'] = true;
                 $_SESSION['statut'] = 2;
@@ -163,9 +181,6 @@ class ControllerUtilisateur
         require_once File::build_path(array('view', 'view.php'));
     }
 
-    /**
-     * Permet de se déconnecter
-     */
     public static function deconnect () {
         if (Session::est_connecte()) {
             Session::destroySession();
