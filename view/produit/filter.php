@@ -1,4 +1,4 @@
-<form method="get" action="">
+<form method="post" action="">
     <fieldset>
         <legend>Trier par:</legend>
         <p>

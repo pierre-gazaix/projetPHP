@@ -5,11 +5,11 @@ class ControllerPanier{
 
     public static function add (){
         if (!isset($_COOKIE['panier'])) {
-            $panier[$_POST['idProduit']] = $_POST['quantite'];
+            $panier[myGet('idProduit')] = myGet('quantite');
         }
         else{
             $panier=unserialize($_COOKIE['panier']);
-            $panier[$_POST['idProduit']] = $_POST['quantite'];
+            $panier[myGet('idProduit')] = myGet('quantite');
         }
         setcookie("panier", serialize($panier),time()+900);
         header('Location: ./index.php?controller=Panier&action=read');
@@ -31,7 +31,7 @@ class ControllerPanier{
     }
     public static function delete(){
         $panier = unserialize(($_COOKIE['panier']));
-        unset($panier[$_GET['idp']]);
+        unset($panier[myGet('idp')]);
         setcookie("panier", serialize($panier),time()+900);
         header('Location: ./index.php?controller=Panier&action=read');
         exit();

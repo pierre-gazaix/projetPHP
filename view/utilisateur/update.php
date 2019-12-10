@@ -1,38 +1,46 @@
 <?php
 $controller = 'utilisateur';
-if ($_GET['action'] == 'update') {
+if (myGet('action') == 'update') {
     $champ = 'readonly';
     $action = 'updated';
     $legend = 'Modification du compte';
+    $nom = htmlspecialchars($u->get('nom'));
+    $prenom = htmlspecialchars($u->get('prenom'));
+    $login = htmlspecialchars($u->get('login'));
+    $mail = htmlspecialchars($u->get('mail'));
 }else {
     $champ = 'required';
     $action = 'created';
     $legend = 'Inscription';
+    $nom = '';
+    $prenom = '';
+    $login = '';
+    $mail = '';
 }
-?>
-<a  href="?controller=utilisateur&action=deconnect">Se déconnecter ?</a>
-<form method="get">
+if (Session::est_connecte())
+    echo '<a  href="?controller=utilisateur&action=deconnect">Se déconnecter ?</a>'; ?>
+<form method="post">
     <fieldset>
         <legend><?php echo $legend ?></legend>
         <p>
             <label>Nom</label>
             <input type="text" name="nom" id="nom_id"
-                   value="<?php echo htmlspecialchars($u->get('nom')); ?>"/>
+                   value="<?php echo $nom; ?>"/>
         </p>
         <p>
             <label>Prenom</label>
             <input type="text" name="prenom" id="coul_id"
-                   value="<?php echo htmlspecialchars($u->get('prenom')); ?>"/>
+                   value="<?php echo $prenom; ?>"/>
         </p>
         <p>
             <label>Login</label>
             <input type="text" name="login" id="login_id"
-                   value="<?php echo htmlspecialchars($u->get('login')); ?>"
+                   value="<?php echo $login; ?>"
             <?php echo $champ;?>/>
         </p>
         <label>Mail</label>
         <input type="email" name="mail" id="mail_id"
-               value="<?php echo htmlspecialchars($u->get('mail')); ?>"
+               value="<?php echo $mail; ?>"
             <?php echo $champ;?>/>
         </p>
         <p>

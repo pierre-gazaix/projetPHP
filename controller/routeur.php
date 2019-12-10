@@ -6,21 +6,30 @@ require_once (File::build_path(array('controller','ControllerPanier.php')));
 require_once (File::build_path(array('controller','ControllerCommande.php')));
 require_once (File::build_path(array('controller','ControllerUtilisateur.php')));
 
-if (isset($_GET['action']) && $_GET['action'] == 'accueil') {
+function myGet($nomVar){
+    if (isset($_GET[$nomVar]))
+        return $_GET[$nomVar];
+    else if (isset($_POST[$nomVar]))
+        return $_POST[$nomVar];
+    else
+        return NULL;
+}
+
+if ( !is_null(myGet('action')) && myGet('action') == 'accueil') {
     $controller = '';
     $view = 'viewAccueil';
     $pagetitle = 'Devialet | Accueil';
     require File::build_path(array('view', 'viewAccueil.php'));
 } else {
-    if (isset($_GET['controller'])) {
-        $controller = $_GET['controller'];
+    if (!is_null(myGet('controller'))) {
+        $controller = myGet('controller');
     } else {
         $controller = 'produit';
     }
     $controller_class = 'Controller' . ucfirst($controller);
     if (class_exists($controller_class)) {
-        if (isset($_GET['action'])) {
-            $action = $_GET['action'];
+        if (!is_null(myGet('action'))) {
+            $action = myGet('action');
         } else {
             $action = 'readAll';
         }

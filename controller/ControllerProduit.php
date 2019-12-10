@@ -13,7 +13,7 @@ class ControllerProduit {
         require File::build_path(array('view','view.php'));
     }
     public static function read(){
-        $p = ModelProduit::select($_GET['idp']);
+        $p = ModelProduit::select(myGet('idp'));
         $controller = 'produit';
         if($p==null){
             $view = 'error';
@@ -25,7 +25,7 @@ class ControllerProduit {
         require File::build_path(array('view', 'view.php'));
     }
     public static function order(){
-        $tab_p = ModelProduit::orderBy($_GET['attribut'], 'ASC');
+        $tab_p = ModelProduit::orderBy(myGet('attribut'), 'ASC');
         $controller = 'produit';
         $view = 'ordered';
         $pagetitle = 'Produit trié';
@@ -53,12 +53,13 @@ class ControllerProduit {
         $controller = 'produit';
         if(Session::est_admin()) {
             $values = array(
-                "idProduit" => $_GET['idp'],
-                "nomProduit" => $_GET['nom'],
-                "description" => $_GET['desc'],
-                "couleur" => $_GET['coul'],
-                "prix" => $_GET['prix'],
-                "idCategorie" => $_GET['idC']);
+                "idProduit" => myGet('idp'),
+                "nomProduit" => myGet('nom'),
+                "description" => myGet('desc'),
+                "couleur" => myGet('coul'),
+                "prix" => myGet('prix'),
+                "idCategorie" => myGet('idc'));
+            var_dump($values);
             $ok = ModelProduit::insert($values);
             $tab_p = ModelProduit::selectAll();
             if (!$ok) {
@@ -78,7 +79,7 @@ class ControllerProduit {
         $controller = 'produit';
         if(Session::est_admin()) {
             $tab_c = ModelCategorie::selectAll();
-            $p = ModelProduit::select($_GET['idp']);
+            $p = ModelProduit::select(myGet('idp'));
             $cat = ModelCategorie::select($p->get('idCategorie'));
             if ($p == null) {
                 $view = 'error';
@@ -97,13 +98,14 @@ class ControllerProduit {
         $controller = 'produit';
         if(Session::est_admin()) {
             $values = array(
-                "idProduit" => $_GET['idp'],
-                "nomProduit" => $_GET['nom'],
-                "description" => $_GET['desc'],
-                "couleur" => $_GET['coul'],
-                "prix" => $_GET['prix'],
-                "idCategorie" => $_GET['idC']);
-            $ok = ModelProduit::update($values, $_GET['idp']);
+                "idProduit" => myGet('idp'),
+                "nomProduit" => myGet('nom'),
+                "description" => myGet('desc'),
+                "couleur" => myGet('coul'),
+                "prix" => myGet('prix'),
+                "idCategorie" => myGet('idc'));
+
+            $ok = ModelProduit::update($values, myGet('idp'));
             $tab_p = ModelProduit::selectAll();
             if (!$ok) {
                 $view = 'error';
@@ -121,12 +123,12 @@ class ControllerProduit {
     public static function delete(){
         $controller = 'produit';
         if(Session::est_admin()) {
-            $p = ModelProduit::select($_GET['idp']);
+            $p = ModelProduit::select(myGet('idp'));
             if (is_null($p)) {
                 $view = 'error';
                 $pagetitle = 'Erreur!';
             } else {
-                $p->delete($_GET['idp']);
+                $p->delete(myGet('idp'));
                 $tab_p = ModelProduit::selectAll();
                 $view = 'deleted';
                 $pagetitle = 'Produit supprimée';

@@ -1,20 +1,20 @@
 <?php
 $controller = static::$object;
-if ($_GET['action'] == 'update') {
+if (myGet('action') == 'update') {
     $champ = 'readonly';
-    $action = 'updated';
-    $legend = 'Création du produit';
+    $action = 'index.php?controller=produit&action=updated';
+    $legend = 'Modification du produit';
     $select = 'disabled';
     $value ='value='.$cat->get('idCategorie');
 }else {
     $champ = 'required';
-    $action = 'created';
-    $legend = 'Modification du produit';
+    $action = 'index.php?controller=produit&action=updated';
+    $legend = 'Création du produit';
     $select ='';
     $value ='';
 }
 ?>
-<form method="get" action="">
+<form method="post" action="<?php echo $action;?>">
     <fieldset>
         <legend><?php echo $legend;?></legend>
         <p>
@@ -45,13 +45,13 @@ if ($_GET['action'] == 'update') {
         </p>
         <p>
             <label for="idCategorie_id">Catégorie</label>
-            <select name="idC" id="idCategorie_id" <?php echo $value;?> <?php echo $champ;?>="true"  <?php// echo $select;?> >
+            <select name="idc" id="idCategorie_id" <?php echo $value;?> <?php echo $champ;?>="true"  <?php// echo $select;?> >
                 <option value=""> Associez une catégorie</option>
 
                 <?php
                 //Boucle qui permet de récupérer tous les noms des catégories
                 foreach($tab_c as $catégorie) {
-                    if ($_GET['action'] == 'update'){
+                    if (myGet('action') == 'update'){
                         echo ' <option selected="selected" value="' .$cat->get('idCategorie'). '">' . $cat->get('nomCategorie') . '</option>';
                     }else{
                         echo '<option value="' . $catégorie->get('idCategorie') . '">' . $catégorie->get('nomCategorie') . '</option>';

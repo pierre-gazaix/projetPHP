@@ -12,11 +12,11 @@ class ControllerCommande{
         $values = array(
             "dateCommande" => date("Y/m/d"),
             "login" => $login,
-            "montantCommande" => $_POST['mc'],
+            "montantCommande" => myGet('mc'),
             "etatCommande" => 'En cours');
         $ok = ModelCommande::insert($values);
         $idCommande = ModelCommande::selectMaxIdCommande();
-        $panier = unserialize($_POST['p']);
+        $panier = unserialize(myGet('p'));
         foreach ($panier as $p => $qte){
             $values=array(
                 "idCommande" =>$idCommande['max(idCommande)'],
@@ -42,7 +42,7 @@ class ControllerCommande{
     }
 
     public static function show(){
-        $idc = $_GET['idc'];
+        $idc = myGet('idc');
         $tabCommande = ModelLigneCommande::selectByIdCommande($idc);
         $controller = 'commande';
         if(empty($tabCommande)){

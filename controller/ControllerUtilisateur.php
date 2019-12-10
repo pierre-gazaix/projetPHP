@@ -19,39 +19,47 @@ class ControllerUtilisateur
 
     }
     public static function created(){
-        $mdp = Security::chiffrer($_GET['mdp']);
-        $mail = filter_var($_GET['mail'], FILTER_VALIDATE_EMAIL);
-        $login = $_GET['login'];
+        $mdp = Security::chiffrer(myGet('mdp'));
+        $mail = filter_var(myGet('mail'), FILTER_VALIDATE_EMAIL);
+        $login = myGet('login');
         $nonce = Security::generateRandomHex();
         if ($mail){
         $values = array(
             "login" => $login,
             "mdp" => $mdp,
-            "nom" => $_GET['nom'],
-            "prenom" => $_GET['prenom'],
-            "nonce" => Security::generateRandomHex(),
+            "nom" => myGet('nom'),
+            "prenom" => myGet('prenom'),
+            "nonce" => $nonce,
             "mail" => $mail);
         $ok = ModelUtilisateur::insert($values);
         $tab_u = ModelUtilisateur::selectAll();
-        $contenuMail = '<html>
-                        <head> <meta charset="utf-8" /> <title>Devialet</title> </head>
+        $contenuMail = "<html>
+                        <head> <meta charset=\"utf-8\" /> <title>Devialet</title> </head>
                         <body>
                         <p>Veuillez valider votre inscirption en cliquant sur ce lien :</p>
-                        <a href="http://webinfo.iutmontp.univ-montp2.fr/~ahamadad/Devialet/index.php?controller=utilisateur&action=validate
-                            &login=".$login."&nonce=".$nonce.">Validation</a>
+                        <a href=\"./index.php?controller=utilisateur&action=validate&login=$login&nonce=$nonce\">Validation</a>
                         </body>
-                        </html>';
-            '</p>';
-        mail($mail,'Validation inscription Devialet',$contenuMail);
-        header('Location: ./index.php?controller=utilisateur&action=connect');
-        exit();
+                        </html>";
+        $mailAEnvoyer = mail($mail,'Validation inscription Devialet',$contenuMail);
+        if($mailAEnvoyer){
+            header('Location: ./index.php?controller=utilisateur&action=connect');
+            exit();
+        }else{
+            header('Location: ./index.php?controller=utilisateur&action=mailError');
+            exit();
+        }
         }else {
             header('Location: ./index.php?controller=utilisateur&action=mailWrong');
             exit();
         }
     }
 
-
+    public static function mailError() {
+        $controller='utilisateur';
+        $view='mailError';
+        $pagetitle='L\'envoi du mail a échoué';
+        require_once File::build_path(array('view', 'view.php'));
+    }
 
     public static function mailWrong() {
         $controller='utilisateur';
@@ -62,7 +70,7 @@ class ControllerUtilisateur
 
     public static function update (){
         $controller = 'utilisateur';
-        $u = ModelUtilisateur::select($_GET['u']);
+        $u = ModelUtilisateur::select(myGet('u'));
         if(Session::is_user($u->get('login')) || Session::est_admin()){
             if (empty($u)) {
                 $view = 'error';
@@ -79,16 +87,15 @@ class ControllerUtilisateur
     }
     public static function updated (){
         $controller = 'utilisateur';
-        if(Session::is_user($_GET['login']) || Session::est_admin()) {
-
-            $mdp = Security::chiffrer($_GET['mdp']);
+        if(Session::is_user(myGet('login')) || Session::est_admin()) {
+            $mdp = Security::chiffrer(myGet('mdp'));
             $values = array(
-                "login" => $_GET['login'],
+                "login" => myGet('login'),
                 "mdp" => $mdp,
-                "nom" => $_GET['nom'],
-                "prenom" => $_GET['prenom'],
-                "mail" => $_GET['mail']);
-            $ok = ModelUtilisateur::update($values, $_GET['login']);
+                "nom" => myGet('nom'),
+                "prenom" => myGet('prenom'),
+                "mail" => myGet('mail'));
+            $ok = ModelUtilisateur::update($values, myGet('login'));
 
             if (!$ok) {
                 $view = 'error';
@@ -104,23 +111,18 @@ class ControllerUtilisateur
         require File::build_path(array('view', 'view.php'));
     }
     public static function connect() {
-        $login = 'DLH';
-        $nonce = Security::generateRandomHex();
-        echo '<a href="http://webinfo.iutmontp.univ-montp2.fr/~ahamadad/Devialet/index.php?controller=utilisateur&action=validate
-                            &login=".$login."&nonce=".$nonce.">Validation</a>';
-        var_dump(ModelUtilisateur::selectNonce('DLH','dada'));
         $controller='utilisateur';
         $view='connect';
         $pagetitle='Bienvenue';
         require_once File::build_path(array('view', 'view.php'));
     }
     public static function validate(){
-        $login = $_GET['login'];
-        $nonce = $_GET['nonce'];
+        $login = myGet('login');
+        $nonce = myGet('nonce');
         if (ModelUtilisateur::select($login)){
             if(ModelUtilisateur::selectNonce($login,$nonce)){
                 $values = array(
-                    "nonce" => '');
+                    "nonce" => NULL);
                 $ok = ModelUtilisateur::update($values, $login);
             }else{
                 $controller = 'utilisateur';
@@ -136,32 +138,43 @@ class ControllerUtilisateur
         }
     }
     public static function connected(){
-        $mdp = Security::chiffrer($_POST['password']);
+        $mdp = Security::chiffrer(myGet('password'));
         //On vérifie d'abord que ce n'est pas le compte admin
-        if ($_POST['login'] == 'admin' && $mdp == '05bd6bbcad24f3d626dab924845c1fee9669fb9393eaa403e63012b65a8f33e5') {
-            $_SESSION['login'] = $_POST['login'];
+        if (myGet('login') == 'admin' && $mdp == '05bd6bbcad24f3d626dab924845c1fee9669fb9393eaa403e63012b65a8f33e5') {
+            $_SESSION['login'] = myGet('login');
             $_SESSION['statut'] = 3; //Mode admin, on a accès à tout
             $_SESSION['connnectedOnServ'] = true;
             header('Location: ./index.php?controller=utilisateur&action=isConnected');
             exit();
         } else{
-            $u = ModelUtilisateur::checkPassword($_POST['login'], $mdp);
+            $u = ModelUtilisateur::checkPassword(myGet('login'), $mdp);
+            $user = ModelUtilisateur::select(myGet('login'));
             if ($u=='userWrong') {
                 header('Location: ./index.php?controller=utilisateur&action=userWrong');
                 exit();
             } else if ($u == 'mdpWrong') {
                 header('Location: ./index.php?controller=utilisateur&action=mdpWrong');
                 exit();
-            } else if ($u=='bg' && $u->get('nonce')==null) {
-                $_SESSION['login'] = $_POST['login'];
-                $_SESSION['connnectedOnServ'] = true;
-                $_SESSION['statut'] = 2;
-                header('Location: ./index.php?controller=utilisateur&action=isConnected');
-                exit();
+            } else if ($u=='bg'){
+                if($user->get('nonce')== NULL){
+                    $_SESSION['login'] = myGet('login');
+                    $_SESSION['connnectedOnServ'] = true;
+                    $_SESSION['statut'] = 2;
+                    header('Location: ./index.php?controller=utilisateur&action=isConnected');
+                    exit();
+                }else{
+                    header('Location: ./index.php?controller=utilisateur&action=notValided');
+                    exit();
+                }
             }
         }
     }
-
+    public static function notValided(){
+        $controller = 'utilisateur';
+        $view = 'notValided';
+        $pagetitle = 'Compte pas encore validé';
+        require_once File::build_path(array('view', 'view.php'));
+    }
     public static function isConnected(){
         $controller='utilisateur';
         $view='bienvenue';

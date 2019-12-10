@@ -11,8 +11,8 @@ class ControllerCategorie {
     }
 
     public static function read(){
-        $c = ModelCategorie::select($_GET['idCategorie']);
-        if($c==null){
+        $c = ModelCategorie::select(myGet('idCategorie'));
+        if(is_null($c)){
             $view = 'error';
             $pagetitlt = 'Erreur!';
         }else {
@@ -31,8 +31,8 @@ class ControllerCategorie {
     }
     public static function created(){
         $values = array(
-            "idCategorie" =>$_POST['idCategorie'],
-            "nomnCategorie" => $_POST['nomCategorie']);
+            "idCategorie" =>myGet('idCategorie'),
+            "nomnCategorie" => myGet('nomCategorie'));
         $ok = ModelCategorie::insert($values);
         $tab_c = ModelCategorie::selectAll();
         if (!$ok) {
@@ -45,7 +45,7 @@ class ControllerCategorie {
         require File::build_path(array('view', 'view.php'));
     }
     public static function update (){
-        $c = ModelCategorie::select($_GET['cat']);
+        $c = ModelCategorie::select(myGet('cat'));
         if ($c == null) {
             $view = 'error';
             $pagetitle = 'Erreur!';
@@ -57,9 +57,9 @@ class ControllerCategorie {
     }
     public static function updated (){
         $values = array(
-            "idCategorie" =>$_POST['idCategorie'],
-            "nomCategorie" => $_POST['nomCategorie']);
-        $ok = ModelCategorie::update($values,$_POST['cat']);
+            "idCategorie" =>myGet('idCategorie'),
+            "nomCategorie" => myGet('nomCategorie'));
+        $ok = ModelCategorie::update($values,myGet('cat'));
         $tab = ModelCategorie::selectAll();
         if(!$ok) {
             $view = 'error';
@@ -71,12 +71,12 @@ class ControllerCategorie {
         require File::build_path(array('view', 'view.php'));
     }
     public static function delete(){
-        $c = ModelCategorie::select($_GET['cat']);
+        $c = ModelCategorie::select(myGet('cat'));
         if(is_null($c)) {
             $view = 'error';
             $pagetitle = 'Erreur!';
         }else{
-            $c->delete($_GET['cat']);
+            $c->delete(myGet('cat'));
             $tab_c = ModelCategorie::selectAll();
             $view = 'deleted';
             $pagetitle = 'Catégorie supprimée';
