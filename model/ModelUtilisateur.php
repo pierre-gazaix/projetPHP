@@ -63,7 +63,7 @@
         {
             try {
                 $utilisateur = self::select($login);
-                $test = '';
+                $nomClasse = self::$nomClasse;
                 $pdo = Model::$pdo;
                 if (!$utilisateur) {
                     $test = 'userWrong';
@@ -72,13 +72,15 @@
                     $sql = "SELECT *
                         FROM `rGztzErq-Utilisateurs`
                         WHERE login =:sql_log 
-                        AND mdp = :sql_mdp;";
+                        AND mdp =:sql_mdp;";
                     $requete = $pdo->prepare($sql);
                     $valeur = array(
                         "sql_log" => $login,
                         "sql_mdp" => $motdepasse);
                     $requete->execute($valeur);
+                    $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
                     $objet = $requete->fetchAll();
+                    var_dump($requete);
                     if (isset($objet[0])){
                         $test = 'bg';
                         return $test;

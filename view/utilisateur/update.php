@@ -2,7 +2,7 @@
 $controller = 'utilisateur';
 if (myGet('action') == 'update') {
     $champ = 'readonly';
-    $action = 'updated';
+    $action = 'index.php?controller=utilisateur&action=updated';
     $legend = 'Modification du compte';
     $nom = htmlspecialchars($u->get('nom'));
     $prenom = htmlspecialchars($u->get('prenom'));
@@ -10,7 +10,7 @@ if (myGet('action') == 'update') {
     $mail = htmlspecialchars($u->get('mail'));
 }else {
     $champ = 'required';
-    $action = 'created';
+    $action = 'index.php?controller=utilisateur&action=created';
     $legend = 'Inscription';
     $nom = '';
     $prenom = '';
@@ -19,7 +19,7 @@ if (myGet('action') == 'update') {
 }
 if (Session::est_connecte())
     echo '<a  href="?controller=utilisateur&action=deconnect">Se déconnecter ?</a>'; ?>
-<form method="post">
+<form method="post" action="<?php echo $action;?>">
     <fieldset>
         <legend><?php echo $legend ?></legend>
         <p>
@@ -49,7 +49,7 @@ if (Session::est_connecte())
         </p>
         <p>
             <label>Confirmer</label>
-            <input type="password" name="mdp" id="cmdp_id">
+            <input type="password" name="mdp_c" id="cmdp_id">
         </p>
         <input type='hidden' name='controller' value='utilisateur'>
         <input type='hidden' name='action' value=<?php echo $action;?>>

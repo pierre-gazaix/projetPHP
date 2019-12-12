@@ -23,6 +23,11 @@ class ControllerCommande{
                 "idProduit" => $p,
                 "quantite" => $qte);
         ModelLigneCommande::insert($values);
+        $produit = ModelProduit::select($p);
+            $valeurs=array(
+                "idProduit" => $p,
+                "quantite" => $produit->get('quantite')- $qte);
+        ModelProduit::update($valeurs,$p);
         }
         header('Location: ./index.php?controller=commande&action=read');
         exit();

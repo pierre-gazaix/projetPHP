@@ -8,7 +8,7 @@ if (myGet('action') == 'update') {
     $value ='value='.$cat->get('idCategorie');
 }else {
     $champ = 'required';
-    $action = 'index.php?controller=produit&action=updated';
+    $action = 'index.php?controller=produit&action=created';
     $legend = 'Création du produit';
     $select ='';
     $value ='';
@@ -60,9 +60,6 @@ if (myGet('action') == 'update') {
                 }
                 ?>
             </select>
-        </p>
-        <input type='hidden' name='action' value=<?php echo $action;?>>
-        <p>
             <input type="submit" value="Envoyer" />
         </p>
     </fieldset>

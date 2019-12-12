@@ -1,4 +1,13 @@
 <?php
+
+if (Session::est_connecte()){
+    $control = 'commande';
+    $act = 'buy';
+}
+else{
+    $control = 'utilisateur';
+    $act = 'createPanier';
+}
 if (!isset ($_COOKIE['panier']) || empty($panier))
     echo "Votre panier est vide!";
 else{
@@ -34,7 +43,7 @@ else{
     <?php echo $totalPanier?>
 €</h3>
 
-    <form method="post" action="?controller=commande&action=buy" >
+    <form method="post" action="?controller=<?php echo $control?>&action=<?php echo $act?>" >
     <input type="hidden" name="mc" id="mc_id" value= <?php echo $totalPanier?>>
     <input type="hidden" name="p" id="p_id" value= <?php echo serialize($panier)?>>
         <input type="submit" value="Passer la commande" />
