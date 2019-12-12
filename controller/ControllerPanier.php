@@ -4,20 +4,20 @@ require_once File::build_path(array('model', 'ModelProduit.php'));// chargement 
 class ControllerPanier{
 
     public static function add (){
-        if (!isset($_COOKIE['panier'])) {
+        if (!isset($_SESSION['panier'])) {
             $panier[myGet('idProduit')] = myGet('quantite');
         }
         else{
-            $panier=unserialize($_COOKIE['panier']);
+            $panier=$_SESSION['panier'];
             $panier[myGet('idProduit')] = myGet('quantite');
         }
-        setcookie("panier", serialize($panier),time()+900);
+        $_SESSION['panier'] = $panier;
         header('Location: ./index.php?controller=Panier&action=read');
         exit();
     }
     public static function read(){
-        if (isset($_COOKIE['panier']))
-            $panier=unserialize($_COOKIE['panier']);
+        if (isset($_SESSION['panier']))
+            $panier=$_SESSION['panier'];
         $controller = 'panier';
         $view = 'detail';
         $pagetitle = 'Votre panier';
@@ -25,14 +25,14 @@ class ControllerPanier{
     }
     public static function deleteAll(){
         $panier=array();
-        setcookie("panier","2",time()-1);
+        unset($_SESSION['panier']);
         header('Location: ./index.php?controller=Panier&action=read');
         exit();
     }
     public static function delete(){
-        $panier = unserialize(($_COOKIE['panier']));
+        $panier = $_SESSION['panier'];
         unset($panier[myGet('idp')]);
-        setcookie("panier", serialize($panier),time()+900);
+        $_SESSION['panier'] = $panier;
         header('Location: ./index.php?controller=Panier&action=read');
         exit();
     }

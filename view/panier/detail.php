@@ -8,7 +8,7 @@ else{
     $control = 'utilisateur';
     $act = 'createPanier';
 }
-if (!isset ($_COOKIE['panier']) || empty($panier))
+if (!isset ($_SESSION['panier']) || empty($panier))
     echo "Votre panier est vide!";
 else{
     ?>
