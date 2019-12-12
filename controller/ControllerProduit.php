@@ -45,6 +45,7 @@ class ControllerProduit {
             $p->set('nomCategorie', '');
             $p->set('description', '');
             $p->set('couleur', '');
+            $p->set('quantite', '');
             $p->set('prix', '');
             $view = 'update';
             $pagetitle = 'Création Produit';
@@ -62,6 +63,7 @@ class ControllerProduit {
                 "nomProduit" => myGet('nom'),
                 "description" => myGet('desc'),
                 "couleur" => myGet('coul'),
+                "quantite" => myGet('qté'),
                 "prix" => myGet('prix'),
                 "idCategorie" => myGet('idc'));
             var_dump($values);
@@ -108,6 +110,7 @@ class ControllerProduit {
                 "description" => myGet('desc'),
                 "couleur" => myGet('coul'),
                 "prix" => myGet('prix'),
+                "quantite" => myGet('qté'),
                 "idCategorie" => myGet('idc'));
 
             $ok = ModelProduit::update($values, myGet('idp'));

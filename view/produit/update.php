@@ -18,27 +18,32 @@ if (myGet('action') == 'update') {
     <fieldset>
         <legend><?php echo $legend;?></legend>
         <p>
-            <label for="nom_id">Nom Produit</label>
+            <label>Nom Produit</label>
             <input type="text" name="nom" id="nom_id"
                    value="<?php echo htmlspecialchars($p->get('nomProduit')); ?>"/>
         </p>
         <p>
-            <label for="desc_id">Descprition</label>
+            <label>Descprition</label>
             <input type="text" name="desc" id="desc_id"
                    value="<?php echo htmlspecialchars($p->get('description')); ?>"/>
         </p>
         <p>
-            <label for="coul_id">Couleur</label>
+            <label>Couleur</label>
             <input type="text" name="coul" id="coul_id"
                    value="<?php echo htmlspecialchars($p->get('couleur')); ?>"/>
         </p>
         <p>
-            <label for="p_id">Prix</label>
+            <label>Prix</label>
             <input type="number" name="prix" id="p_id"
                    value="<?php echo htmlspecialchars($p->get('prix')); ?>"/>
         </p>
         <p>
-            <label for="idP_id">Id Produit</label>
+            <label>Quantité</label>
+            <input type="number" name="qté" id="qte_id"
+                   value="<?php echo htmlspecialchars($p->get('quantite')); ?>"/>
+        </p>
+        <p>
+            <label>Id Produit</label>
             <input type="number" name="idp" id="idP_id"
                    value="<?php echo htmlspecialchars($p->get('idProduit')); ?>"
                     <?php echo $champ;?>="true"/>
@@ -60,7 +65,7 @@ if (myGet('action') == 'update') {
                 }
                 ?>
             </select>
-            <input type="submit" value="Envoyer" />
         </p>
+        <input type="submit" value="Envoyer" />
     </fieldset>
 </form>

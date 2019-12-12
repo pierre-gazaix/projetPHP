@@ -77,7 +77,7 @@
 </div>
 
 <footer>
-    <p>Contactez nous via le <strong><a href="./Contact.html">formulaire</a>
+    <p>Contactez nous via le <strong><a href="./view/Contact.html">formulaire</a>
         </strong>, par <strong>téléphone au 0123456789</strong> ou retrouvez nous directement en <strong><a href="./view/Boutique.html">boutique</a></strong>.</p>
     <hr>
     <div>
