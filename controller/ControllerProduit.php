@@ -24,13 +24,18 @@ class ControllerProduit {
         }
         require File::build_path(array('view', 'view.php'));
     }
-    public static function order(){
-        $tab_p = ModelProduit::orderBy(myGet('attribut'), 'ASC');
+   /* public static function order(){
+        $tri = myGet('attribut');
+        if ($tri =='sansTri')
+            $tab_p = ModelProduit::selectAll();
+        else
+            $tab_p = ModelProduit::orderBy('prix','DESC');
+
         $controller = 'produit';
         $view = 'ordered';
-        $pagetitle = 'Produit trié';
+        $pagetitle = 'Produit triés';
         require File::build_path(array('view', 'view.php'));
-    }
+    }*/
     public static function create(){
         $controller = 'produit';
         if(Session::est_admin()) {

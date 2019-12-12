@@ -20,7 +20,7 @@ class ControllerUtilisateur
     }
 
     public static function createPanier() {
-        $controller='utilisateur';
+        $controller='panier';
         $view='createPanier';
         $pagetitle='Création de l\'utilisateur';
         require_once File::build_path(array('view', 'view.php'));

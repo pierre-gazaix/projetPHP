@@ -57,8 +57,8 @@
 <div class="Holygrail-body">
     <aside class="Holygrail-asideleft">
         <?php
-        /*if($view == 'list' ||$view == 'updated' ||$view == 'created'  ) {
-            $filepath = File::build_path(array('view', $controller, "filter.php"));
+        /*if($view == 'list' ||$view == 'updated' || $view == 'created' || $view == 'ordered'  ) {
+            $filepath = File::build_path(array('view', "produit", "filter.php"));
             require_once $filepath;
         }*/
         ?>

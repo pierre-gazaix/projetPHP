@@ -33,7 +33,7 @@ class Model{
             return false;
         }
     }
-    public static function orderBy($atrribut, $order){
+   /* public static function orderBy($atrribut, $order){
         try {
             $pdo = self::$pdo;
             $nomTable = static::$nomTable;
@@ -41,24 +41,23 @@ class Model{
 
             $sql = "SELECT * 
                     FROM `{$nomTable}`
-                    ORDER BY nomProduit ASC";
+                    ORDER BY :attribut :ordre;";
+
             $requete = $pdo->prepare($sql);
             $valeur = array(
-                "attribut" => $atrribut,
-                "ordre" => $order);
+                'attribut' =>$atrribut,
+                'ordre' =>$order);
 
             $requete->execute($valeur);
             $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
+            var_dump($requete);
             $objet = $requete->fetchAll();
-            if (isset($objet[0]))
-                return $objet[0];
-            else
-                return null;
+            return $objet;
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
         }
-    }
+    }*/
     public static function select($primary_value){
         try {
             $pdo = self::$pdo;

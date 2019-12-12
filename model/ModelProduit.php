@@ -38,6 +38,9 @@ class ModelProduit extends Model{
     public static function selectAll(){
         return parent::selectAll();
     }
+    public static function orderBy($attribut, $order){
+        return parent::orderBy($attribut, $order);
+    }
     public static function select($primary_value){
         return parent::select($primary_value);
     }
