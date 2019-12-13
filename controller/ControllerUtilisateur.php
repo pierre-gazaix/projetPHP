@@ -63,7 +63,7 @@ class ControllerUtilisateur
     }
 
     public static function validationMail() {
-        $controller='utilisateur';
+        $controller='error';
         $view='valide';
         $pagetitle='Valider votre compte ';
         require_once File::build_path(array('view', 'view.php'));

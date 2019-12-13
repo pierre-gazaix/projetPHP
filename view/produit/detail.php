@@ -28,8 +28,8 @@ echo""
         ?>
         <form method="post" action="?action=add&controller=panier">
             <input class="form-control" type="number" placeholder="Quantité" min ="1"
-                   max="<?php echo $p->get('quantite');?>" step="1" name="quantite" value="1" required />
-            <input type="hidden" name="idProduit" value="<?php echo $p->get('idProduit');?>" />
+                   max="<?php echo $qte_html;?>" step="1" name="quantite" value="1" required />
+            <input type="hidden" name="idProduit" value="<?php echo $idp_html;?>" />
             <button class ="btn btn-info my-4 btn-block orange accent-4" type="submit">
                 <img src="./view/Images/JPEG/atc.png" alt="atc">
             </button class ="btn btn-info my-4 btn-block orange accent-4">

@@ -11,10 +11,11 @@ class ControllerCategorie {
     }
 
     public static function read(){
+        $controller = 'categorie';
         $c = ModelCategorie::select(myGet('idCategorie'));
         if(is_null($c)){
             $view = 'error';
-            $pagetitlt = 'Erreur!';
+            $pagetitle = 'Erreur!';
         }else {
             $view = 'detail';
             $pagetitlt = 'Détail';

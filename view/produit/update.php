@@ -57,9 +57,9 @@ if (myGet('action') == 'update') {
                 //Boucle qui permet de récupérer tous les noms des catégories
                 foreach($tab_c as $catégorie) {
                     if (myGet('action') == 'update'){
-                        echo ' <option selected="selected" value="' .$cat->get('idCategorie'). '">' . $cat->get('nomCategorie') . '</option>';
+                        echo ' <option selected="selected" value="' .htmlspecialchars($cat->get('idCategorie')). '">' . htmlspecialchars($cat->get('nomCategorie')) . '</option>';
                     }else{
-                        echo '<option value="' . $catégorie->get('idCategorie') . '">' . $catégorie->get('nomCategorie') . '</option>';
+                        echo '<option value="' . htmlspecialchars($catégorie->get('idCategorie')) . '">' . htmlspecialchars($catégorie->get('nomCategorie')) . '</option>';
                     }
 
                 }

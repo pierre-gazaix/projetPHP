@@ -33,30 +33,6 @@ class Model{
             return false;
         }
     }
-   /* public static function orderBy($atrribut, $order){
-        try {
-            $pdo = self::$pdo;
-            $nomTable = static::$nomTable;
-            $nomClasse = static::$nomClasse;
-
-            $sql = "SELECT * 
-                    FROM `{$nomTable}`
-                    ORDER BY :attribut :ordre;";
-
-            $requete = $pdo->prepare($sql);
-            $valeur = array(
-                'attribut' =>$atrribut,
-                'ordre' =>$order);
-
-            $requete->execute($valeur);
-            $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
-            $objet = $requete->fetchAll();
-            return $objet;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
-    }*/
     public static function select($primary_value){
         try {
             $pdo = self::$pdo;
@@ -79,7 +55,6 @@ class Model{
                 return null;
 
         } catch (PDOException $e) {
-            echo $e->getMessage();
             return false;
         }
     }
@@ -97,7 +72,6 @@ class Model{
             $requete->execute();
             return true;
         }catch(PDOException $e){
-            echo $e->getMessage();
             return false;
         }
     }
@@ -142,5 +116,30 @@ class Model{
             return false;
         }
     }
+    /* public static function orderBy($atrribut, $order){
+         try {
+             $pdo = self::$pdo;
+             $nomTable = static::$nomTable;
+             $nomClasse = static::$nomClasse;
+
+             $sql = "SELECT *
+                     FROM `{$nomTable}`
+                     ORDER BY :attribut :ordre;";
+
+             $requete = $pdo->prepare($sql);
+             $valeur = array(
+                 'attribut' =>$atrribut,
+                 'ordre' =>$order);
+
+             $requete->execute($valeur);
+             $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
+             var_dump($requete);
+             $objet = $requete->fetchAll();
+             return $objet;
+         } catch (PDOException $e) {
+             echo $e->getMessage();
+             return false;
+         }
+     }*/
 }
 Model::Init();
