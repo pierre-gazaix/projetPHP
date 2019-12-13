@@ -70,14 +70,14 @@ class ControllerUtilisateur
     }
 
     public static function mailError() {
-        $controller='utilisateur';
+        $controller='error';
         $view='mailError';
         $pagetitle='L\'envoi du mail a échoué';
         require_once File::build_path(array('view', 'view.php'));
     }
 
     public static function mailWrong() {
-        $controller='utilisateur';
+        $controller='error';
         $view='mailWrong';
         $pagetitle='Adresse non valide';
         require_once File::build_path(array('view', 'view.php'));
@@ -88,6 +88,7 @@ class ControllerUtilisateur
         $u = ModelUtilisateur::select(myGet('u'));
         if(Session::is_user($u->get('login')) || Session::est_admin()){
             if (empty($u)) {
+                $controller='error';
                 $view = 'error';
                 $pagetitle = 'Erreur!';
             } else {
@@ -95,6 +96,7 @@ class ControllerUtilisateur
                 $pagetitle = 'Votre compte';
             }
         }else{
+            $controller='error';
             $view = 'notUser';
             $pagetitle ='Petit filou!';
         }
@@ -113,6 +115,7 @@ class ControllerUtilisateur
             $ok = ModelUtilisateur::update($values, myGet('login'));
 
             if (!$ok) {
+                $controller='error';
                 $view = 'error';
                 $pagetitle = 'Erreur!';
             } else {
@@ -120,6 +123,7 @@ class ControllerUtilisateur
                 exit();
             }
         }else{
+            $controller='error';
             $view = 'notUser';
             $pagetitle ='Petit filou!';
         }
@@ -144,12 +148,12 @@ class ControllerUtilisateur
                 $view = 'Valided';
                 $pagetitle = 'Validation réussie';
             }else{
-                $controller = 'utilisateur';
+                $controller = 'error';
                 $view = 'notValided';
                 $pagetitle = 'Validation incorrecte';
             }
         }else{
-            $controller = 'utilisateur';
+            $controller='error';
             $view = 'userWrong';
             $pagetitle = 'Utilisateur non reconnu';
         }
@@ -157,37 +161,37 @@ class ControllerUtilisateur
     }
     public static function connected(){
         $mdp = Security::chiffrer(myGet('password'));
-        //On vérifie d'abord que ce n'est pas le compte admin
-        if (myGet('login') == 'admin' && $mdp == '05bd6bbcad24f3d626dab924845c1fee9669fb9393eaa403e63012b65a8f33e5') {
-            $_SESSION['login'] = myGet('login');
-            $_SESSION['statut'] = 3; //Mode admin, on a accès à tout
-            $_SESSION['connnectedOnServ'] = true;
-            header('Location: ./index.php?controller=utilisateur&action=isConnected');
+        $u = ModelUtilisateur::checkPassword(myGet('login'), $mdp);
+        $user = ModelUtilisateur::select(myGet('login'));
+
+        if ($u=='userWrong') {
+            header('Location: ./index.php?controller=utilisateur&action=userWrong');
             exit();
-        } else{
-            $u = ModelUtilisateur::checkPassword(myGet('login'), $mdp);
-            $user = ModelUtilisateur::select(myGet('login'));
-            if ($u=='userWrong') {
-                header('Location: ./index.php?controller=utilisateur&action=userWrong');
-                exit();
-            } else if ($u == 'mdpWrong') {
-                header('Location: ./index.php?controller=utilisateur&action=mdpWrong');
-                exit();
-            } else if ($u=='bg'){
-                if($user->get('nonce')== NULL){
-                    $_SESSION['login'] = myGet('login');
-                    $_SESSION['connnectedOnServ'] = true;
+
+        }else if ($u == 'mdpWrong') {
+            header('Location: ./index.php?controller=utilisateur&action=mdpWrong');
+            exit();
+
+        }else if ($u=='bg'){
+            if($user->get('nonce')== NULL){
+                $_SESSION['login'] = myGet('login');
+                $_SESSION['connnectedOnServ'] = true;
+
+                if($user->get('admin')== 1)
+                    $_SESSION['statut'] = 3;
+                else
                     $_SESSION['statut'] = 2;
-                   header('Location: ./index.php?controller=utilisateur&action=isConnected');
-                    exit();
-                }else{
-                    echo'4';
-                    header('Location: ./index.php?controller=utilisateur&action=notValided');
-                    exit();
-                }
+
+               header('Location: ./index.php?controller=utilisateur&action=isConnected');
+                exit();
+
+            }else{
+                header('Location: ./index.php?controller=utilisateur&action=notValided');
+                exit();
             }
         }
     }
+
     public static function notValided(){
         $controller = 'utilisateur';
         $view = 'notValided';
