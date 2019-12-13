@@ -50,6 +50,7 @@ class ControllerProduit {
             $view = 'update';
             $pagetitle = 'Création Produit';
         }else{
+            $controller='error';
             $view = 'notUser';
             $pagetitle ='Petit filou!';
         }
@@ -66,7 +67,6 @@ class ControllerProduit {
                 "quantite" => myGet('qté'),
                 "prix" => myGet('prix'),
                 "idCategorie" => myGet('idc'));
-            var_dump($values);
             $ok = ModelProduit::insert($values);
             $tab_p = ModelProduit::selectAll();
             if (!$ok) {
@@ -77,6 +77,7 @@ class ControllerProduit {
                 $pagetitle = 'Categorie Crée';
             }
         }else{
+            $controller='error';
             $view = 'notUser';
             $pagetitle ='Petit filou!';
         }
@@ -96,6 +97,7 @@ class ControllerProduit {
                 $pagetitle = 'Modification du produit';
             }
         }else{
+            $controller='error';
             $view = 'notUser';
             $pagetitle ='Petit filou!';
         }
@@ -123,6 +125,7 @@ class ControllerProduit {
                 $pagetitle = 'Catégorie modifiée';
             }
         }else{
+            $controller='error';
             $view = 'notUser';
             $pagetitle ='Petit filou!';
         }
@@ -142,6 +145,7 @@ class ControllerProduit {
                 $pagetitle = 'Produit supprimée';
             }
         }else{
+            $controller='error';
             $view = 'notUser';
             $pagetitle ='Petit filou!';
         }

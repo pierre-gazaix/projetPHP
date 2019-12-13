@@ -50,7 +50,6 @@ class Model{
 
             $requete->execute($valeur);
             $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
-            var_dump($requete);
             $objet = $requete->fetchAll();
             return $objet;
         } catch (PDOException $e) {

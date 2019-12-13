@@ -193,7 +193,7 @@ class ControllerUtilisateur
     }
 
     public static function notValided(){
-        $controller = 'utilisateur';
+        $controller='error';
         $view = 'notValided';
         $pagetitle = 'Compte non validé';
         require_once File::build_path(array('view', 'view.php'));
@@ -205,13 +205,13 @@ class ControllerUtilisateur
         require_once File::build_path(array('view', 'view.php'));
     }
     public static function userWrong(){
-        $controller = 'utilisateur';
+        $controller='error';
         $view = 'userWrong';
         $pagetitle = 'Utilisateur non reconnu';
         require_once File::build_path(array('view', 'view.php'));
     }
     public static function mdpWrong(){
-        $controller = 'utilisateur';
+        $controller='error';
         $view = 'mdpWrong';
         $pagetitle = 'Mauvais mot de passe';
         require_once File::build_path(array('view', 'view.php'));

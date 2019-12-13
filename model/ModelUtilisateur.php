@@ -80,7 +80,6 @@
                     $requete->execute($valeur);
                     $requete->setFetchMode(PDO::FETCH_CLASS, $nomClasse);
                     $objet = $requete->fetchAll();
-                    var_dump($requete);
                     if (isset($objet[0])){
                         $test = 'bg';
                         return $test;
